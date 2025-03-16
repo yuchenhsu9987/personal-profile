@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Typography, Paper, Box, Button } from '@mui/material';
+import { Container, Typography, Paper, Box, Button, Avatar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import profileImage from '../assets/images/profile.png';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -16,6 +17,24 @@ const Home = () => {
           mt: 8,
         }}
       >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Avatar
+            src={profileImage}
+            alt="個人照片"
+            sx={{
+              width: 200,
+              height: 200,
+              mb: 4,
+              border: '4px solid #1976d2',
+              boxShadow: 3,
+            }}
+          />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
