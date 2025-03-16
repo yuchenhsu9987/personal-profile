@@ -8,7 +8,7 @@ const projectsList = [
     title: '吶語症模型測試與收音系統',
     description: '開發一個專門針對吶語症患者的語音收集和測試平台。此系統能夠收集語音樣本並進行即時測試，為研究提供重要的數據支持。',
     link: 'https://120.126.151.159:56432/',
-    technologies: ['Python', 'React', 'Speech Recognition', 'Machine Learning']
+    technologies: ['Python', 'React', 'Speech Recognition', 'Deep Learning']
   },
   {
     title: '吶語症模型數據分析平台',
