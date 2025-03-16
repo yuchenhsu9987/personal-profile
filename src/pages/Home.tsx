@@ -2,10 +2,16 @@ import React from 'react';
 import { Container, Typography, Paper, Box, Button, Avatar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import DownloadIcon from '@mui/icons-material/Download';
 import profileImage from '../assets/images/profile.png';
+import resume from '../assets/documents/resume.pdf';
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const handleDownloadResume = () => {
+    window.open(resume, '_blank');
+  };
 
   return (
     <Container>
@@ -41,7 +47,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <Typography variant="h2" component="h1" gutterBottom align="center">
-            歡迎來到我的個人網站
+            許育辰
           </Typography>
         </motion.div>
 
@@ -67,17 +73,29 @@ const Home = () => {
             目前就讀於國立臺北大學資訊工程研究所二年級，專注於電腦科學領域的研究與實務。
             擁有紮實的程式設計基礎，熱衷於探索新技術，期待能夠為科技發展貢獻一份力量。
           </Typography>
+          <Typography variant="body1">
+            研究方向包括機器學習、深度學習和電腦視覺，並具有實際的專案開發經驗。
+            在學術研究和實務應用之間，我追求理論與實踐的完美結合。
+          </Typography>
         </Paper>
 
-        <Box sx={{ mt: 4 }}>
+        <Box sx={{ mt: 4, display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
           <Button
             variant="contained"
             color="primary"
             size="large"
             onClick={() => navigate('/education')}
-            sx={{ mr: 2 }}
           >
-            查看學歷背景
+            學歷背景
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            onClick={handleDownloadResume}
+            startIcon={<DownloadIcon />}
+          >
+            下載履歷
           </Button>
           <Button
             variant="outlined"

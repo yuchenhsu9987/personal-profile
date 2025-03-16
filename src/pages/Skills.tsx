@@ -1,14 +1,44 @@
 import React from 'react';
-import { Container, Typography, Grid, Paper, LinearProgress, Box } from '@mui/material';
+import { Container, Typography, Grid, Paper, LinearProgress, Box, Chip } from '@mui/material';
 import { motion } from 'framer-motion';
 
 const skillsList = [
-  { name: '程式設計', level: 90, description: '熟悉 Java, Python, JavaScript/TypeScript' },
-  { name: '網頁開發', level: 85, description: 'React, Node.js, HTML/CSS' },
-  { name: '資料庫', level: 80, description: 'MySQL, MongoDB, PostgreSQL' },
-  { name: '演算法與資料結構', level: 85, description: '紮實的電腦科學基礎' },
-  { name: '軟體工程', level: 80, description: '敏捷開發, Git, CI/CD' },
-  { name: '機器學習', level: 75, description: '基礎機器學習知識與實務經驗' },
+  { 
+    name: '程式語言',
+    level: 90,
+    description: '精通 Python、Java、C/C++、JavaScript/TypeScript',
+    tags: ['Python', 'Java', 'C/C++', 'JavaScript', 'TypeScript']
+  },
+  { 
+    name: '機器學習/深度學習',
+    level: 85,
+    description: 'TensorFlow, PyTorch, Scikit-learn',
+    tags: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV']
+  },
+  { 
+    name: '網頁開發',
+    level: 85,
+    description: 'React, Node.js, Express, HTML/CSS',
+    tags: ['React', 'Node.js', 'Express', 'HTML/CSS']
+  },
+  { 
+    name: '資料庫',
+    level: 80,
+    description: 'MySQL, MongoDB, PostgreSQL',
+    tags: ['MySQL', 'MongoDB', 'PostgreSQL']
+  },
+  { 
+    name: '開發工具',
+    level: 85,
+    description: 'Git, Docker, Linux, VS Code',
+    tags: ['Git', 'Docker', 'Linux', 'VS Code']
+  },
+  { 
+    name: '其他技能',
+    level: 75,
+    description: 'RESTful API, CI/CD, Agile',
+    tags: ['RESTful API', 'CI/CD', 'Agile']
+  },
 ];
 
 const SkillCard = ({ skill, index }: { skill: typeof skillsList[0]; index: number }) => {
@@ -29,9 +59,20 @@ const SkillCard = ({ skill, index }: { skill: typeof skillsList[0]; index: numbe
             sx={{ height: 10, borderRadius: 5 }}
           />
         </Box>
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
           {skill.description}
         </Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+          {skill.tags.map((tag) => (
+            <Chip
+              key={tag}
+              label={tag}
+              size="small"
+              color="primary"
+              variant="outlined"
+            />
+          ))}
+        </Box>
       </Paper>
     </motion.div>
   );
