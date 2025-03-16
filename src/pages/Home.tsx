@@ -72,6 +72,7 @@ const Home = () => {
           <Typography variant="body1" paragraph>
             目前就讀於國立臺北大學資訊工程研究所二年級，專注於電腦科學領域的研究與實務。
             擁有紮實的程式設計基礎，熱衷於探索新技術，期待能夠為科技發展貢獻一份力量。
+            目前研究專注於自然語言處理（Natural Language Processing）領域，特別是大型語言模型（LLM）和自動語音辨識（ASR）技術的應用與優化。
           </Typography>
           <Typography variant="body1">
             研究方向包括機器學習、深度學習和電腦視覺，並具有實際的專案開發經驗。
