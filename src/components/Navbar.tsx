@@ -18,6 +18,9 @@ const Navbar = () => {
           <Button color="inherit" onClick={() => navigate('/education')}>
             學歷背景
           </Button>
+          <Button color="inherit" onClick={() => navigate('/projects')}>
+            專案作品
+          </Button>
           <Button color="inherit" onClick={() => navigate('/skills')}>
             專業技能
           </Button>

@@ -11,13 +11,13 @@ const skillsList = [
   },
   { 
     name: '機器學習/深度學習',
-    level: 85,
+    level: 90,
     description: 'TensorFlow, PyTorch, Scikit-learn, 專注於電腦視覺應用',
     tags: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV']
   },
   { 
     name: '其他程式語言',
-    level: 85,
+    level: 80,
     description: '具備多種程式語言開發經驗',
     tags: ['Java', 'C/C++', 'JavaScript', 'TypeScript']
   },
@@ -30,14 +30,14 @@ const skillsList = [
   { 
     name: '資料庫',
     level: 80,
-    description: 'MySQL, MongoDB, PostgreSQL',
-    tags: ['MySQL', 'MongoDB', 'PostgreSQL']
+    description: 'MySQL, MongoDB',
+    tags: ['MongoDB', 'MySQL',]
   },
   { 
     name: '開發工具',
     level: 85,
     description: 'Git, Docker, Linux, VS Code',
-    tags: ['Git', 'Docker', 'Linux', 'VS Code']
+    tags: ['Git', 'Docker', 'Linux', 'VS Code', 'Cursor']
   },
 ];
 

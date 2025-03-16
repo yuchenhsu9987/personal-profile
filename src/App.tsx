@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Education from './pages/Education';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
+import Projects from './pages/Projects';
 
 const theme = createTheme({
   palette: {
@@ -37,6 +38,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/education" element={<Education />} />
+              <Route path="/projects" element={<Projects />} />
               <Route path="/skills" element={<Skills />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
