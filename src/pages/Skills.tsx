@@ -17,7 +17,7 @@ const skillsList = [
   },
   { 
     name: '其他程式語言',
-    level: 80,
+    level: 75,
     description: '具備多種程式語言開發經驗',
     tags: ['Java', 'C/C++', 'JavaScript', 'TypeScript']
   },
@@ -30,7 +30,7 @@ const skillsList = [
   { 
     name: '資料庫',
     level: 80,
-    description: 'MySQL, MongoDB',
+    description: 'MongoDB, MySQL',
     tags: ['MongoDB', 'MySQL',]
   },
   { 
