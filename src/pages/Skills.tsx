@@ -3,12 +3,12 @@ import { Container, Typography, Grid, Paper, LinearProgress, Box } from '@mui/ma
 import { motion } from 'framer-motion';
 
 const skillsList = [
-  { name: '程式设计', level: 90, description: '熟悉 Java, Python, JavaScript/TypeScript' },
-  { name: '网页开发', level: 85, description: 'React, Node.js, HTML/CSS' },
-  { name: '数据库', level: 80, description: 'MySQL, MongoDB, PostgreSQL' },
-  { name: '算法与数据结构', level: 85, description: '扎实的计算机科学基础' },
-  { name: '软体工程', level: 80, description: '敏捷开发, Git, CI/CD' },
-  { name: '机器学习', level: 75, description: '基础机器学习知识与实践经验' },
+  { name: '程式設計', level: 90, description: '熟悉 Java, Python, JavaScript/TypeScript' },
+  { name: '網頁開發', level: 85, description: 'React, Node.js, HTML/CSS' },
+  { name: '資料庫', level: 80, description: 'MySQL, MongoDB, PostgreSQL' },
+  { name: '演算法與資料結構', level: 85, description: '紮實的電腦科學基礎' },
+  { name: '軟體工程', level: 80, description: '敏捷開發, Git, CI/CD' },
+  { name: '機器學習', level: 75, description: '基礎機器學習知識與實務經驗' },
 ];
 
 const SkillCard = ({ skill, index }: { skill: typeof skillsList[0]; index: number }) => {
@@ -41,7 +41,7 @@ const Skills = () => {
   return (
     <Container>
       <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-        专业技能
+        專業技能
       </Typography>
       
       <Grid container spacing={3}>

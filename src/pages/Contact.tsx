@@ -35,14 +35,14 @@ const Contact = () => {
   return (
     <Container>
       <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-        联系方式
+        聯絡方式
       </Typography>
 
       <Box sx={{ maxWidth: 800, mx: 'auto' }}>
         <Grid container spacing={3}>
           <ContactItem
             icon={<EmailIcon fontSize="large" />}
-            title="电子邮件"
+            title="電子郵件"
             content="your.email@example.com"
             delay={0.2}
           />
@@ -67,10 +67,10 @@ const Contact = () => {
         >
           <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
             <Typography variant="h6" gutterBottom>
-              关于合作
+              關於合作
             </Typography>
             <Typography variant="body1">
-              我对软体开发、机器学习等领域的项目合作很感兴趣。如果您有任何想法或建议，欢迎随时与我联系！
+              我對軟體開發、機器學習等領域的專案合作很感興趣。如果您有任何想法或建議，歡迎隨時與我聯絡！
             </Typography>
           </Paper>
         </motion.div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Paper, Box } from '@mui/material';
+import { Container, Typography, Paper } from '@mui/material';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
 import SchoolIcon from '@mui/icons-material/School';
 
@@ -7,7 +7,7 @@ const Education = () => {
   return (
     <Container>
       <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-        教育背景
+        學歷背景
       </Typography>
       
       <Timeline position="alternate">
@@ -21,13 +21,13 @@ const Education = () => {
           <TimelineContent>
             <Paper elevation={3} sx={{ p: 3, mb: 2 }}>
               <Typography variant="h6" component="h2">
-                国立台北大学
+                國立臺北大學
               </Typography>
               <Typography color="textSecondary">
-                资讯工程研究所 - 硕士二年级
+                資訊工程研究所 - 碩士二年級
               </Typography>
               <Typography variant="body2" sx={{ mt: 1 }}>
-                专注于进阶资讯工程研究，深入探讨计算机科学领域的前沿技术
+                專注於進階資訊工程研究，深入探討電腦科學領域的前沿技術
               </Typography>
             </Paper>
           </TimelineContent>
@@ -42,13 +42,13 @@ const Education = () => {
           <TimelineContent>
             <Paper elevation={3} sx={{ p: 3 }}>
               <Typography variant="h6" component="h2">
-                国立高雄科技大学
+                國立高雄科技大學
               </Typography>
               <Typography color="textSecondary">
-                资讯工程学系 - 学士
+                資訊工程學系 - 學士
               </Typography>
               <Typography variant="body2" sx={{ mt: 1 }}>
-                打下扎实的计算机科学基础，培养专业技能和实践经验
+                奠定紮實的電腦科學基礎，培養專業技能和實務經驗
               </Typography>
             </Paper>
           </TimelineContent>

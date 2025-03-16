@@ -22,7 +22,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <Typography variant="h2" component="h1" gutterBottom align="center">
-            欢迎来到我的个人网站
+            歡迎來到我的個人網站
           </Typography>
         </motion.div>
 
@@ -32,7 +32,7 @@ const Home = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
         >
           <Typography variant="h5" color="textSecondary" align="center" sx={{ mb: 4 }}>
-            资讯工程研究生 | 软体开发者
+            資訊工程研究生 | 軟體開發者
           </Typography>
         </motion.div>
 
@@ -45,8 +45,8 @@ const Home = () => {
           sx={{ p: 4, maxWidth: 600, width: '100%', mb: 4 }}
         >
           <Typography variant="body1" paragraph>
-            目前就读于国立台北大学资讯工程研究所二年级，专注于计算机科学领域的研究与实践。
-            拥有扎实的程式设计基础，热衷于探索新技术，期待能够为科技发展贡献一份力量。
+            目前就讀於國立臺北大學資訊工程研究所二年級，專注於電腦科學領域的研究與實務。
+            擁有紮實的程式設計基礎，熱衷於探索新技術，期待能夠為科技發展貢獻一份力量。
           </Typography>
         </Paper>
 
@@ -58,7 +58,7 @@ const Home = () => {
             onClick={() => navigate('/education')}
             sx={{ mr: 2 }}
           >
-            查看教育背景
+            查看學歷背景
           </Button>
           <Button
             variant="outlined"
@@ -66,7 +66,7 @@ const Home = () => {
             size="large"
             onClick={() => navigate('/contact')}
           >
-            联系我
+            聯絡我
           </Button>
         </Box>
       </Box>

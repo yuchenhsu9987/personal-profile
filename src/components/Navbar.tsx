@@ -9,20 +9,20 @@ const Navbar = () => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          个人简介
+          個人簡介
         </Typography>
         <Box>
           <Button color="inherit" onClick={() => navigate('/')}>
-            首页
+            首頁
           </Button>
           <Button color="inherit" onClick={() => navigate('/education')}>
-            教育背景
+            學歷背景
           </Button>
           <Button color="inherit" onClick={() => navigate('/skills')}>
-            技能
+            專業技能
           </Button>
           <Button color="inherit" onClick={() => navigate('/contact')}>
-            联系方式
+            聯絡方式
           </Button>
         </Box>
       </Toolbar>
