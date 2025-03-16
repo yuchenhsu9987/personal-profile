@@ -4,16 +4,22 @@ import { motion } from 'framer-motion';
 
 const skillsList = [
   { 
-    name: '程式語言',
-    level: 90,
-    description: '精通 Python、Java、C/C++、JavaScript/TypeScript',
-    tags: ['Python', 'Java', 'C/C++', 'JavaScript', 'TypeScript']
+    name: 'Python 開發',
+    level: 95,
+    description: '精通 Python 開發，包括數據分析、機器學習應用和網頁後端開發',
+    tags: ['Python', 'NumPy', 'Pandas', 'Flask', 'Django']
   },
   { 
     name: '機器學習/深度學習',
     level: 85,
-    description: 'TensorFlow, PyTorch, Scikit-learn',
+    description: 'TensorFlow, PyTorch, Scikit-learn, 專注於電腦視覺應用',
     tags: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV']
+  },
+  { 
+    name: '其他程式語言',
+    level: 85,
+    description: '具備多種程式語言開發經驗',
+    tags: ['Java', 'C/C++', 'JavaScript', 'TypeScript']
   },
   { 
     name: '網頁開發',
@@ -32,12 +38,6 @@ const skillsList = [
     level: 85,
     description: 'Git, Docker, Linux, VS Code',
     tags: ['Git', 'Docker', 'Linux', 'VS Code']
-  },
-  { 
-    name: '其他技能',
-    level: 75,
-    description: 'RESTful API, CI/CD, Agile',
-    tags: ['RESTful API', 'CI/CD', 'Agile']
   },
 ];
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Typography, Paper, Box, Grid } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import PhoneIcon from '@mui/icons-material/Phone';
 import { motion } from 'framer-motion';
 
 const ContactItem = ({ icon, title, content, delay }: { icon: React.ReactNode; title: string; content: string; delay: number }) => {
@@ -43,19 +43,19 @@ const Contact = () => {
           <ContactItem
             icon={<EmailIcon fontSize="large" />}
             title="電子郵件"
-            content="your.email@example.com"
+            content="rufushsu9987@gmail.com"
             delay={0.2}
+          />
+          <ContactItem
+            icon={<PhoneIcon fontSize="large" />}
+            title="聯絡電話"
+            content="0975-115-201"
+            delay={0.4}
           />
           <ContactItem
             icon={<GitHubIcon fontSize="large" />}
             title="GitHub"
-            content="github.com/yourusername"
-            delay={0.4}
-          />
-          <ContactItem
-            icon={<LinkedInIcon fontSize="large" />}
-            title="LinkedIn"
-            content="linkedin.com/in/yourusername"
+            content="github.com/yuchenhsu9987"
             delay={0.6}
           />
         </Grid>

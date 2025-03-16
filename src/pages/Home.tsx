@@ -47,7 +47,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <Typography variant="h2" component="h1" gutterBottom align="center">
-            許育辰
+            許育宸
           </Typography>
         </motion.div>
 
