@@ -17,8 +17,8 @@ const skillsList = [
   },
   { 
     name: '其他程式語言',
-    level: 75,
-    description: '具備多種程式語言開發經驗',
+    level: 80,
+    description: '具備多種程式語言開發經驗，主要以python為主',
     tags: ['Java', 'C/C++', 'JavaScript', 'TypeScript']
   },
   { 
@@ -36,7 +36,7 @@ const skillsList = [
   { 
     name: '開發工具',
     level: 85,
-    description: 'Git, Docker, Linux, VS Code',
+    description: 'Git, Docker, Linux, VS Code, Cursor',
     tags: ['Git', 'Docker', 'Linux', 'VS Code', 'Cursor']
   },
 ];
