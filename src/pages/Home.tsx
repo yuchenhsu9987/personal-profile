@@ -91,6 +91,14 @@ const Home = () => {
           </Button>
           <Button
             variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => navigate('/projects')}
+          >
+            專案作品
+          </Button>
+          <Button
+            variant="contained"
             color="secondary"
             size="large"
             onClick={handleDownloadResume}
@@ -105,14 +113,6 @@ const Home = () => {
             onClick={() => navigate('/contact')}
           >
             聯絡我
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={() => navigate('/projects')}
-          >
-            專案作品
           </Button>
         </Box>
       </Box>
