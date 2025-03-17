@@ -24,11 +24,11 @@ const Navbar: React.FC<NavbarProps> = ({ mobileOpen, onClose, isMobile }) => {
 
   const menuItems = [
     { text: '首頁', icon: <HomeIcon />, path: '/' },
-    { text: '履歷', icon: <DescriptionIcon />, path: '/resume' },
-    { text: '專案', icon: <CodeIcon />, path: '/projects' },
-    { text: '技能', icon: <BuildIcon />, path: '/skills' },
-    { text: '學歷', icon: <SchoolIcon />, path: '/education' },
-    { text: '聯絡', icon: <ContactMailIcon />, path: '/contact' },
+    { text: '履歷', icon: <DescriptionIcon />, path: 'resume' },
+    { text: '學歷', icon: <SchoolIcon />, path: 'education' },
+    { text: '專案', icon: <CodeIcon />, path: 'projects' },
+    { text: '技能', icon: <BuildIcon />, path: 'skills' },
+    { text: '聯絡', icon: <ContactMailIcon />, path: 'contact' },
   ];
 
   const drawer = (

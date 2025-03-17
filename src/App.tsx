@@ -135,10 +135,11 @@ function App() {
           >
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/resume" element={<Resume />} />
-              <Route path="/education" element={<Education />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="resume" element={<Resume />} />
+              <Route path="education" element={<Education />} />
+              <Route path="projects" element={<Projects />} />
+              <Route path="skills" element={<Skills />} />
+              <Route path="contact" element={<Contact />} />
             </Routes>
           </Box>
         </Box>

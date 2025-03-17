@@ -31,7 +31,7 @@ const technicalSkillsList = [
     name: '資料庫',
     level: 80,
     description: 'MongoDB, MySQL',
-    tags: ['MongoDB', 'MySQL',]
+    tags: ['MongoDB', 'MySQL']
   },
   { 
     name: '開發工具',
