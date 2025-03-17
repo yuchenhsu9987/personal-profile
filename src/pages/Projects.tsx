@@ -5,6 +5,12 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 const projectsList = [
   {
+    title: 'Crypto Tracker',
+    description: '使用 React 和 Firebase 開發的加密貨幣追蹤應用。提供即時價格更新、市場趨勢分析，還有潛力貨幣推薦。',
+    link: 'https://crypto-dba3b.web.app/',
+    technologies: ['React', 'Firebase', 'API Integration', 'Material-UI', 'Responsive Design']
+  },
+  {
     title: '吶語症模型測試與收音系統',
     description: '開發一個專門針對吶語症患者的語音收集和測試平台。此系統能夠收集語音樣本並進行即時測試，為研究提供重要的數據支持。',
     link: 'https://120.126.151.159:56432/',

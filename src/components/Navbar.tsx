@@ -31,6 +31,14 @@ const Navbar: React.FC<NavbarProps> = ({ mobileOpen, onClose, isMobile }) => {
     { text: '聯絡', icon: <ContactMailIcon />, path: 'contact' },
   ];
 
+  const isActive = (path: string) => {
+    const currentPath = location.pathname.replace('/personal-profile', '');
+    if (path === '/') {
+      return currentPath === '/' || currentPath === '';
+    }
+    return currentPath === `/${path}`;
+  };
+
   const drawer = (
     <>
       <Box
@@ -68,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({ mobileOpen, onClose, isMobile }) => {
               mb: 1,
               mx: 1,
               borderRadius: 1,
-              backgroundColor: location.pathname === item.path ? 'rgba(156, 129, 100, 0.08)' : 'transparent',
+              backgroundColor: isActive(item.path) ? 'rgba(156, 129, 100, 0.08)' : 'transparent',
               '&:hover': {
                 backgroundColor: 'rgba(156, 129, 100, 0.12)',
               },
@@ -76,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ mobileOpen, onClose, isMobile }) => {
           >
             <ListItemIcon
               sx={{
-                color: location.pathname === item.path ? theme.palette.primary.main : theme.palette.text.secondary,
+                color: isActive(item.path) ? theme.palette.primary.main : theme.palette.text.secondary,
                 minWidth: 40,
               }}
             >
@@ -86,8 +94,8 @@ const Navbar: React.FC<NavbarProps> = ({ mobileOpen, onClose, isMobile }) => {
               primary={item.text}
               sx={{
                 '& .MuiListItemText-primary': {
-                  color: location.pathname === item.path ? theme.palette.primary.main : theme.palette.text.primary,
-                  fontWeight: location.pathname === item.path ? 500 : 400,
+                  color: isActive(item.path) ? theme.palette.primary.main : theme.palette.text.primary,
+                  fontWeight: isActive(item.path) ? 500 : 400,
                 },
               }}
             />
