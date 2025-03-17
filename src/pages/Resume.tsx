@@ -45,60 +45,89 @@ const Resume = () => {
         // 等待一下確保動畫已停止
         await new Promise(resolve => setTimeout(resolve, 100));
 
-        // 設定 A4 尺寸（以 px 為單位，96 dpi）
-        const a4Width = 827; // 8.27 inches * 96 dpi
-        const a4Height = 1169; // 11.69 inches * 96 dpi
-
-        // 調整容器大小為 A4
         const element = resumeRef.current;
         const originalStyle = {
           width: element.style.width,
           height: element.style.height,
-          padding: element.style.padding
+          padding: element.style.padding,
+          transform: element.style.transform,
+          fontSize: window.getComputedStyle(element).fontSize
         };
 
-        element.style.width = `${a4Width}px`;
+        // 調整容器大小和縮放
+        element.style.width = '210mm';
         element.style.height = 'auto';
-        element.style.padding = '40px';
+        element.style.padding = '12ffmm';
+        element.style.transform = 'scale(1)';
+        // 調整基礎字體大小
+        element.style.fontSize = '12px';
 
-        // 生成 PDF
-        const canvas = await html2canvas(element, {
-          scale: 2,
-          useCORS: true,
-          logging: false,
-          allowTaint: true,
-          backgroundColor: '#ffffff',
-          width: a4Width,
-          height: element.scrollHeight,
+        // 調整其他文字大小
+        const headings = element.querySelectorAll('h1, h2, h3');
+        headings.forEach((heading) => {
+          if (heading instanceof HTMLElement) {
+            const currentSize = parseInt(window.getComputedStyle(heading).fontSize);
+            heading.style.fontSize = `${currentSize * 1.2}px`;
+          }
         });
 
-        // 恢復原始樣式
-        element.style.width = originalStyle.width;
-        element.style.height = originalStyle.height;
-        element.style.padding = originalStyle.padding;
-
-        // 創建 PDF（A4 尺寸：210mm x 297mm）
+        // 創建 PDF
         const pdf = new jsPDF({
           format: 'a4',
           unit: 'mm',
           orientation: 'portrait'
         });
 
-        // 計算縮放比例以適應一頁
-        const imgWidth = 210;
-        const imgHeight = Math.min((canvas.height * imgWidth) / canvas.width, 297);
-        
-        // 添加到 PDF（置中對齊）
-        const xPosition = 0;
-        const yPosition = (297 - imgHeight) / 2;
-        
+        // 生成 canvas，提高縮放比例以獲得更好的質量
+        const canvas = await html2canvas(element, {
+          scale: 3,
+          useCORS: true,
+          logging: false,
+          allowTaint: true,
+          backgroundColor: '#ffffff',
+          windowWidth: element.scrollWidth,
+          windowHeight: element.scrollHeight
+        });
+
+        // 恢復原始樣式
+        element.style.width = originalStyle.width;
+        element.style.height = originalStyle.height;
+        element.style.padding = originalStyle.padding;
+        element.style.transform = originalStyle.transform;
+        element.style.fontSize = originalStyle.fontSize;
+        headings.forEach((heading) => {
+          if (heading instanceof HTMLElement) {
+            heading.style.fontSize = '';
+          }
+        });
+
+        // 計算適當的縮放比例
+        const pageWidth = 210;
+        const pageHeight = 297;
+        const margin = 5; // 減少邊距以容納更大的內容
+
+        const imgWidth = pageWidth - (margin * 2);
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // 如果高度超過頁面，進行額外縮放
+        const scaleFactor = Math.min(1, (pageHeight - margin * 2) / imgHeight);
+        const finalWidth = imgWidth * scaleFactor;
+        const finalHeight = imgHeight * scaleFactor;
+
+        // 計算居中位置
+        const xPosition = (pageWidth - finalWidth) / 2;
+        const yPosition = (pageHeight - finalHeight) / 2;
+
+        // 添加到 PDF，提高圖片質量
         pdf.addImage(
           canvas.toDataURL('image/jpeg', 1.0),
           'JPEG',
           xPosition,
           yPosition,
-          imgWidth,
-          imgHeight
+          finalWidth,
+          finalHeight,
+          undefined,
+          'FAST'
         );
 
         // 下載 PDF
@@ -200,25 +229,25 @@ const Resume = () => {
         }}>
           {/* 頭部區域 */}
           <motion.div>
-            <Box sx={{ textAlign: 'center', py: 1.5 }}>
+            <Box sx={{ textAlign: 'center', py: 1 }}>
               <Box sx={{ mb: 1, display: 'flex', justifyContent: 'center' }}>
                 <Avatar
                   alt="許育宸"
                   src={profileImage}
                   sx={{
-                    width: 100,
-                    height: 100,
+                    width: 80,
+                    height: 80,
                     border: '3px solid',
                     borderColor: 'primary.main',
                     boxShadow: 3,
-                    mb: 1.5,
+                    mb: 1,
                     bgcolor: 'primary.main',
                   }}
                 />
               </Box>
               
               <Typography variant="h1" sx={{ 
-                fontSize: '32px',
+                fontSize: '28px',
                 color: '#2c2c2c',
                 mb: 0.5,
                 fontWeight: 300
@@ -228,34 +257,34 @@ const Resume = () => {
               <Typography variant="h2" sx={{ 
                 fontSize: '16px',
                 color: '#666666',
-                mb: 1.5,
+                mb: 1,
                 fontWeight: 400
               }}>
                 資訊工程研究生 | 軟體開發者
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <EmailIcon sx={{ color: 'primary.main', fontSize: '1.2rem' }} />
+                  <EmailIcon sx={{ color: 'primary.main', fontSize: '1.1rem' }} />
                   <Typography variant="body2">rufushsu9987@gmail.com</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <PhoneIcon sx={{ color: 'primary.main', fontSize: '1.2rem' }} />
+                  <PhoneIcon sx={{ color: 'primary.main', fontSize: '1.1rem' }} />
                   <Typography variant="body2">0975-115-201</Typography>
                 </Box>
               </Box>
             </Box>
           </motion.div>
 
-          <Box sx={{ height: '1px', bgcolor: 'primary.main', opacity: 0.2, my: 2 }} />
+          <Box sx={{ height: '1px', bgcolor: 'primary.main', opacity: 0.2, my: 1.5 }} />
 
           {/* 教育背景 */}
           <motion.div>
-            <Box sx={{ my: 2 }}>
+            <Box sx={{ my: 1.5 }}>
               <Typography variant="h2" sx={{ 
-                fontSize: '20px',
+                fontSize: '18px',
                 color: 'primary.main',
                 fontWeight: 500,
-                mb: 1.5
+                mb: 1
               }}>
                 教育背景
               </Typography>
@@ -272,32 +301,33 @@ const Resume = () => {
                   <TimelineOppositeContent sx={{ 
                     flex: 0.1,
                     color: 'text.secondary',
-                    fontSize: '14px'
+                    fontSize: '13px'
                   }}>
                     2023.09 - 至今
                   </TimelineOppositeContent>
                   <TimelineSeparator>
-                    <TimelineDot color="primary">
-                      <SchoolIcon sx={{ fontSize: 16 }} />
+                    <TimelineDot color="primary" sx={{ p: 0.5 }}>
+                      <SchoolIcon sx={{ fontSize: 14 }} />
                     </TimelineDot>
                     <TimelineConnector />
                   </TimelineSeparator>
                   <TimelineContent>
-                    <Box sx={{ pb: 2 }}>
+                    <Box sx={{ pb: 1.5 }}>
                       <Typography variant="h3" sx={{ 
-                        fontSize: '16px',
+                        fontSize: '15px',
                         fontWeight: 500,
-                        mb: 0.5
+                        mb: 0.25
                       }}>
                         國立臺北大學
                       </Typography>
                       <Typography variant="body2" sx={{ 
                         color: '#666666',
-                        mb: 0.5
+                        mb: 0.25,
+                        fontSize: '13px'
                       }}>
                         資訊工程研究所 - 碩士班
                       </Typography>
-                      <Typography variant="body2" sx={{ lineHeight: 1.5 }}>
+                      <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
                         主要研究方向為自然語言處理與語音辨識，目前參與科技部國家科學及技術委員會包容導向計劃子計劃二。
                       </Typography>
                     </Box>
@@ -308,31 +338,32 @@ const Resume = () => {
                   <TimelineOppositeContent sx={{ 
                     flex: 0.1,
                     color: 'text.secondary',
-                    fontSize: '14px'
+                    fontSize: '13px'
                   }}>
                     2019.09 - 2023.06
                   </TimelineOppositeContent>
                   <TimelineSeparator>
-                    <TimelineDot color="primary">
-                      <SchoolIcon sx={{ fontSize: 16 }} />
+                    <TimelineDot color="primary" sx={{ p: 0.5 }}>
+                      <SchoolIcon sx={{ fontSize: 14 }} />
                     </TimelineDot>
                   </TimelineSeparator>
                   <TimelineContent>
                     <Box>
                       <Typography variant="h3" sx={{ 
-                        fontSize: '16px',
+                        fontSize: '15px',
                         fontWeight: 500,
-                        mb: 0.5
+                        mb: 0.25
                       }}>
                         國立高雄科技大學
                       </Typography>
                       <Typography variant="body2" sx={{ 
                         color: '#666666',
-                        mb: 0.5
+                        mb: 0.25,
+                        fontSize: '13px'
                       }}>
                         資訊工程學系 - 學士
                       </Typography>
-                      <Typography variant="body2" sx={{ lineHeight: 1.5 }}>
+                      <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
                         獨立研究專題為「中文錯別字校正系統」，與國立臺灣師範大學華語文與科技研究中心合作。
                       </Typography>
                     </Box>
@@ -344,69 +375,69 @@ const Resume = () => {
 
           {/* 專業技能 */}
           <motion.div>
-            <Box sx={{ my: 2 }}>
+            <Box sx={{ my: 1.5 }}>
               <Typography variant="h2" sx={{ 
-                fontSize: '20px',
+                fontSize: '18px',
                 color: 'primary.main',
                 fontWeight: 500,
-                mb: 1.5
+                mb: 1
               }}>
                 專業技能
               </Typography>
 
-              <Grid container spacing={2}>
+              <Grid container spacing={1.5}>
                 <Grid item xs={12} md={4}>
-                  <Paper elevation={1} sx={{ p: 1.5 }}>
+                  <Paper elevation={1} sx={{ p: 1.25 }}>
                     <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
+                      fontSize: '15px',
                       fontWeight: 500,
-                      mb: 1
+                      mb: 0.75
                     }}>
                       程式語言
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="Python" size="small" color="primary" variant="outlined" />
-                      <Chip label="C/C++" size="small" color="primary" variant="outlined" />
-                      <Chip label="JavaScript" size="small" color="primary" variant="outlined" />
-                      <Chip label="TypeScript" size="small" color="primary" variant="outlined" />
-                      <Chip label="Java" size="small" color="primary" variant="outlined" />
+                      <Chip label="Python" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="C/C++" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="JavaScript" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="TypeScript" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="Java" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
                     </Box>
                   </Paper>
                 </Grid>
 
                 <Grid item xs={12} md={4}>
-                  <Paper elevation={1} sx={{ p: 1.5 }}>
+                  <Paper elevation={1} sx={{ p: 1.25 }}>
                     <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
+                      fontSize: '15px',
                       fontWeight: 500,
-                      mb: 1
+                      mb: 0.75
                     }}>
                       領域知識
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="自然語言處理" size="small" color="primary" variant="outlined" />
-                      <Chip label="語音辨識" size="small" color="primary" variant="outlined" />
-                      <Chip label="機器學習" size="small" color="primary" variant="outlined" />
-                      <Chip label="深度學習" size="small" color="primary" variant="outlined" />
+                      <Chip label="自然語言處理" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="語音辨識" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="機器學習" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="深度學習" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
                     </Box>
                   </Paper>
                 </Grid>
 
                 <Grid item xs={12} md={4}>
-                  <Paper elevation={1} sx={{ p: 1.5 }}>
+                  <Paper elevation={1} sx={{ p: 1.25 }}>
                     <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
+                      fontSize: '15px',
                       fontWeight: 500,
-                      mb: 1
+                      mb: 0.75
                     }}>
                       工具與框架
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="TensorFlow" size="small" color="primary" variant="outlined" />
-                      <Chip label="PyTorch" size="small" color="primary" variant="outlined" />
-                      <Chip label="Git" size="small" color="primary" variant="outlined" />
-                      <Chip label="Docker" size="small" color="primary" variant="outlined" />
-                      <Chip label="React" size="small" color="primary" variant="outlined" />
+                      <Chip label="TensorFlow" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="PyTorch" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="Git" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="Docker" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="React" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
                     </Box>
                   </Paper>
                 </Grid>
@@ -416,374 +447,221 @@ const Resume = () => {
 
           {/* 專案經驗 */}
           <motion.div>
-            <Box sx={{ my: 2 }}>
+            <Box sx={{ my: 1.5 }}>
               <Typography variant="h2" sx={{ 
-                fontSize: '20px',
+                fontSize: '18px',
                 color: 'primary.main',
                 fontWeight: 500,
-                mb: 1.5
+                mb: 1
               }}>
                 專案經驗
               </Typography>
 
-              <Box sx={{ mb: 3 }}>
-                <Grid container spacing={2} alignItems="flex-start">
-                  <Grid item xs={12} md={9}>
-                    <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
-                      fontWeight: 500,
-                      mb: 0.5,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1
-                    }}>
-                      LLM Chat-Bot
+              <Grid container spacing={1.5}>
+                {/* LLM Chat-Bot */}
+                <Grid item xs={12} sm={6}>
+                  <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                      <Typography variant="h3" sx={{ 
+                        fontSize: '16px',
+                        fontWeight: 500,
+                        flex: 1
+                      }}>
+                        LLM Chat-Bot
+                      </Typography>
                       <Box 
                         component="a"
                         href="https://chat-bot-39815.web.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                         sx={{ 
-                          color: 'primary.main',
                           display: 'flex',
                           alignItems: 'center',
-                          textDecoration: 'none',
-                          '&:hover': {
-                            opacity: 0.8
-                          }
+                          color: 'primary.main',
+                          '&:hover': { opacity: 0.8 }
                         }}
                       >
-                        <OpenInNewIcon sx={{ fontSize: 18 }} />
+                        <QRCodeSVG value="https://chat-bot-39815.web.app/" size={24} level="L" />
                       </Box>
-                    </Typography>
-                    <Typography variant="body2" sx={{ 
-                      lineHeight: 1.5,
-                      mb: 0.5
-                    }}>
-                      基於大型語言模型開發的智能對話機器人，支持多輪對話並具有上下文理解能力。使用 React 開發前端界面，Firebase 進行部署。
+                    </Box>
+                    <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
+                      基於大型語言模型開發的智能對話機器人，支持多輪對話並具有上下文理解能力。
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="React" size="small" color="primary" variant="outlined" />
-                      <Chip label="Firebase" size="small" color="primary" variant="outlined" />
-                      <Chip label="LLM" size="small" color="primary" variant="outlined" />
-                      <Chip label="TypeScript" size="small" color="primary" variant="outlined" />
+                      <Chip label="React" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="Firebase" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="LLM" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
                     </Box>
-                  </Grid>
-                  <Grid item xs={12} md={3} sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'flex-start',
-                    pt: { xs: 2, md: 0 }
-                  }}>
-                    <Box sx={{ 
-                      p: 0.75,
-                      border: '1px solid',
-                      borderColor: 'primary.light',
-                      borderRadius: 1,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: 0.25
-                    }}>
-                      <QRCodeSVG
-                        value="https://chat-bot-39815.web.app/"
-                        size={48}
-                        level="L"
-                        includeMargin={false}
-                      />
-                      <Typography variant="caption" sx={{ 
-                        color: 'text.secondary',
-                        fontSize: '11px'
-                      }}>
-                        掃碼訪問
-                      </Typography>
-                    </Box>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Box>
 
-              <Box sx={{ mb: 3 }}>
-                <Grid container spacing={2} alignItems="flex-start">
-                  <Grid item xs={12} md={9}>
-                    <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
-                      fontWeight: 500,
-                      mb: 0.5,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1
-                    }}>
-                      Crypto Tracker
+                {/* Crypto Tracker */}
+                <Grid item xs={12} sm={6}>
+                  <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                      <Typography variant="h3" sx={{ 
+                        fontSize: '16px',
+                        fontWeight: 500,
+                        flex: 1
+                      }}>
+                        Crypto Tracker
+                      </Typography>
                       <Box 
                         component="a"
                         href="https://crypto-dba3b.web.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                         sx={{ 
-                          color: 'primary.main',
                           display: 'flex',
                           alignItems: 'center',
-                          textDecoration: 'none',
-                          '&:hover': {
-                            opacity: 0.8
-                          }
+                          color: 'primary.main',
+                          '&:hover': { opacity: 0.8 }
                         }}
                       >
-                        <OpenInNewIcon sx={{ fontSize: 18 }} />
+                        <QRCodeSVG value="https://crypto-dba3b.web.app/" size={24} level="L" />
                       </Box>
-                    </Typography>
-                    <Typography variant="body2" sx={{ 
-                      lineHeight: 1.5,
-                      mb: 0.5
-                    }}>
-                      使用 React 和 Firebase 開發的加密貨幣追蹤應用。提供即時價格更新、市場趨勢分析，並支持用戶收藏喜愛的加密貨幣。
+                    </Box>
+                    <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
+                      使用 React 開發的加密貨幣追蹤應用，提供即時價格更新和市場趨勢分析。
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="React" size="small" color="primary" variant="outlined" />
-                      <Chip label="Firebase" size="small" color="primary" variant="outlined" />
-                      <Chip label="Material-UI" size="small" color="primary" variant="outlined" />
-                      <Chip label="API Integration" size="small" color="primary" variant="outlined" />
+                      <Chip label="React" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="Firebase" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="API" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
                     </Box>
-                  </Grid>
-                  <Grid item xs={12} md={3} sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'flex-start',
-                    pt: { xs: 2, md: 0 }
-                  }}>
-                    <Box sx={{ 
-                      p: 0.75,
-                      border: '1px solid',
-                      borderColor: 'primary.light',
-                      borderRadius: 1,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: 0.25
-                    }}>
-                      <QRCodeSVG
-                        value="https://crypto-dba3b.web.app/"
-                        size={48}
-                        level="L"
-                        includeMargin={false}
-                      />
-                      <Typography variant="caption" sx={{ 
-                        color: 'text.secondary',
-                        fontSize: '11px'
-                      }}>
-                        掃碼訪問
-                      </Typography>
-                    </Box>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Box>
 
-              <Box sx={{ mb: 3 }}>
-                <Grid container spacing={2} alignItems="flex-start">
-                  <Grid item xs={12} md={9}>
-                    <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
-                      fontWeight: 500,
-                      mb: 0.5,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1
-                    }}>
-                      吶語症模型測試與收音系統
+                {/* 吶語症模型測試與收音系統 */}
+                <Grid item xs={12} sm={6}>
+                  <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                      <Typography variant="h3" sx={{ 
+                        fontSize: '16px',
+                        fontWeight: 500,
+                        flex: 1
+                      }}>
+                        吶語症模型測試系統
+                      </Typography>
                       <Box 
                         component="a"
                         href="https://120.126.151.159:56432/trans"
                         target="_blank"
                         rel="noopener noreferrer"
                         sx={{ 
-                          color: 'primary.main',
                           display: 'flex',
                           alignItems: 'center',
-                          textDecoration: 'none',
-                          '&:hover': {
-                            opacity: 0.8
-                          }
+                          color: 'primary.main',
+                          '&:hover': { opacity: 0.8 }
                         }}
                       >
-                        <OpenInNewIcon sx={{ fontSize: 18 }} />
+                        <QRCodeSVG value="https://120.126.151.159:56432/trans" size={24} level="L" />
                       </Box>
-                    </Typography>
-                    <Typography variant="body2" sx={{ 
-                      lineHeight: 1.5,
-                      mb: 0.5
-                    }}>
-                      開發專門針對吶語症患者的語音收集和測試平台，用於收集語音樣本並進行即時測試。
+                    </Box>
+                    <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
+                      開發針對吶語症患者的語音收集和測試平台，用於收集語音樣本並進行即時測試。
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="Python" size="small" color="primary" variant="outlined" />
-                      <Chip label="語音處理" size="small" color="primary" variant="outlined" />
-                      <Chip label="深度學習" size="small" color="primary" variant="outlined" />
+                      <Chip label="Python" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="語音處理" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="深度學習" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
                     </Box>
-                  </Grid>
-                  <Grid item xs={12} md={3} sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'flex-start',
-                    pt: { xs: 2, md: 0 }
-                  }}>
-                    <Box sx={{ 
-                      p: 0.75,
-                      border: '1px solid',
-                      borderColor: 'primary.light',
-                      borderRadius: 1,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: 0.25
-                    }}>
-                      <QRCodeSVG
-                        value="https://120.126.151.159:56432/trans"
-                        size={48}
-                        level="L"
-                        includeMargin={false}
-                      />
-                      <Typography variant="caption" sx={{ 
-                        color: 'text.secondary',
-                        fontSize: '11px'
-                      }}>
-                        掃碼訪問
-                      </Typography>
-                    </Box>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Box>
 
-              <Box sx={{ mb: 3 }}>
-                <Grid container spacing={2} alignItems="flex-start">
-                  <Grid item xs={12} md={9}>
-                    <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
-                      fontWeight: 500,
-                      mb: 0.5,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1
-                    }}>
-                      吶語症模型數據分析平台
+                {/* 吶語症模型數據分析平台 */}
+                <Grid item xs={12} sm={6}>
+                  <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                      <Typography variant="h3" sx={{ 
+                        fontSize: '16px',
+                        fontWeight: 500,
+                        flex: 1
+                      }}>
+                        吶語症數據分析平台
+                      </Typography>
                       <Box 
                         component="a"
                         href="https://dmcair.ntpu.edu.tw:5173/"
                         target="_blank"
                         rel="noopener noreferrer"
                         sx={{ 
-                          color: 'primary.main',
                           display: 'flex',
                           alignItems: 'center',
-                          textDecoration: 'none',
-                          '&:hover': {
-                            opacity: 0.8
-                          }
+                          color: 'primary.main',
+                          '&:hover': { opacity: 0.8 }
                         }}
                       >
-                        <OpenInNewIcon sx={{ fontSize: 18 }} />
+                        <QRCodeSVG value="https://dmcair.ntpu.edu.tw:5173/" size={24} level="L" />
                       </Box>
-                    </Typography>
-                    <Typography variant="body2" sx={{ 
-                      lineHeight: 1.5,
-                      mb: 0.5
-                    }}>
-                      建立數據分析平台，用於分析和視覺化吶語症語音識別的結果，協助研究團隊改進模型。
+                    </Box>
+                    <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
+                      建立數據分析平台，用於分析和視覺化吶語症語音識別的結果，協助研究改進。
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="數據分析" size="small" color="primary" variant="outlined" />
-                      <Chip label="視覺化" size="small" color="primary" variant="outlined" />
-                      <Chip label="React" size="small" color="primary" variant="outlined" />
+                      <Chip label="數據分析" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="視覺化" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="React" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
                     </Box>
-                  </Grid>
-                  <Grid item xs={12} md={3} sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'flex-start',
-                    pt: { xs: 2, md: 0 }
-                  }}>
-                    <Box sx={{ 
-                      p: 0.75,
-                      border: '1px solid',
-                      borderColor: 'primary.light',
-                      borderRadius: 1,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: 0.25
-                    }}>
-                      <QRCodeSVG
-                        value="https://dmcair.ntpu.edu.tw:5173/"
-                        size={48}
-                        level="L"
-                        includeMargin={false}
-                      />
-                      <Typography variant="caption" sx={{ 
-                        color: 'text.secondary',
-                        fontSize: '11px'
-                      }}>
-                        掃碼訪問
-                      </Typography>
-                    </Box>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Box>
-
+              </Grid>
             </Box>
           </motion.div>
 
           {/* 其他專長 */}
           <motion.div>
-            <Box sx={{ my: 2 }}>
+            <Box sx={{ my: 1.5 }}>
               <Typography variant="h2" sx={{ 
-                fontSize: '20px',
+                fontSize: '18px',
                 color: 'primary.main',
                 fontWeight: 500,
-                mb: 1.5
+                mb: 1
               }}>
-                其他專長
+                其他
               </Typography>
 
-              <Grid container spacing={2}>
+              <Grid container spacing={1.5}>
                 <Grid item xs={12} md={4}>
-                  <Paper elevation={1} sx={{ p: 1.5 }}>
+                  <Paper elevation={1} sx={{ p: 1.25 }}>
                     <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
+                      fontSize: '15px',
                       fontWeight: 500,
-                      mb: 0.5
+                      mb: 0.25
                     }}>
                       語言能力
                     </Typography>
-                    <Typography variant="body2" sx={{ lineHeight: 1.5 }}>
+                    <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
                       中文（母語）、英文（中級 - TOEIC 665分）
                     </Typography>
                   </Paper>
                 </Grid>
 
                 <Grid item xs={12} md={4}>
-                  <Paper elevation={1} sx={{ p: 1.5 }}>
+                  <Paper elevation={1} sx={{ p: 1.25 }}>
                     <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
+                      fontSize: '15px',
                       fontWeight: 500,
-                      mb: 0.5
+                      mb: 0.25
                     }}>
                       研究興趣
                     </Typography>
-                    <Typography variant="body2" sx={{ lineHeight: 1.5 }}>
+                    <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
                       自然語言處理、語音辨識、電腦視覺
                     </Typography>
                   </Paper>
                 </Grid>
 
                 <Grid item xs={12} md={4}>
-                  <Paper elevation={1} sx={{ p: 1.5 }}>
+                  <Paper elevation={1} sx={{ p: 1.25 }}>
                     <Typography variant="h3" sx={{ 
-                      fontSize: '16px',
+                      fontSize: '15px',
                       fontWeight: 500,
-                      mb: 0.5
+                      mb: 0.25
                     }}>
                       個人興趣
                     </Typography>
-                    <Typography variant="body2" sx={{ lineHeight: 1.5 }}>
+                    <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
                       運動（籃球、羽球、網球）、健身、加密貨幣研究
                     </Typography>
                   </Paper>
@@ -792,10 +670,10 @@ const Resume = () => {
             </Box>
           </motion.div>
 
-          <Box sx={{ height: '1px', bgcolor: 'primary.main', opacity: 0.2, my: 1.5 }} />
+          <Box sx={{ height: '1px', bgcolor: 'primary.main', opacity: 0.2, my: 1 }} />
 
-          <Box sx={{ textAlign: 'center', py: 1 }}>
-            <Typography variant="body2" sx={{ color: '#666666' }}>
+          <Box sx={{ textAlign: 'center', py: 0.5 }}>
+            <Typography variant="body2" sx={{ color: '#666666', fontSize: '12px' }}>
               此履歷更新於 2025年3月
             </Typography>
           </Box>
