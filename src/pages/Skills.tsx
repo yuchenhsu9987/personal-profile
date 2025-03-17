@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Typography, Grid, Paper, LinearProgress, Box, Chip } from '@mui/material';
 import { motion } from 'framer-motion';
 
-const skillsList = [
+const technicalSkillsList = [
   { 
     name: 'Python 開發',
     level: 95,
@@ -12,20 +12,20 @@ const skillsList = [
   { 
     name: '機器學習/深度學習',
     level: 90,
-    description: 'TensorFlow, PyTorch, Scikit-learn, 專注於電腦視覺應用',
+    description: 'TensorFlow, PyTorch, Scikit-learn, 專注於自然語言處理',
     tags: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV']
   },
   { 
     name: '其他程式語言',
     level: 80,
-    description: '具備多種程式語言開發經驗，主要以python為主',
+    description: '具備多種程式語言開發經驗',
     tags: ['Java', 'C/C++', 'JavaScript', 'TypeScript']
   },
   { 
     name: '網頁開發',
     level: 85,
-    description: 'React, Node.js, Express, HTML/CSS',
-    tags: ['React', 'Node.js', 'Express', 'HTML/CSS']
+    description: 'React, Node.js, HTML/CSS',
+    tags: ['React', 'Node.js', 'HTML/CSS']
   },
   { 
     name: '資料庫',
@@ -41,7 +41,16 @@ const skillsList = [
   },
 ];
 
-const SkillCard = ({ skill, index }: { skill: typeof skillsList[0]; index: number }) => {
+const languageSkillsList = [
+  { 
+    name: '語言能力',
+    level: 85,
+    description: '中文為母語，具備英語能力TOEIC 成績 665 分',
+    tags: ['中文', '英文', 'TOEIC 665']
+  },
+];
+
+const SkillCard = ({ skill, index }: { skill: typeof technicalSkillsList[0]; index: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -86,9 +95,32 @@ const Skills = () => {
       </Typography>
       
       <Grid container spacing={3}>
-        {skillsList.map((skill, index) => (
+        {technicalSkillsList.map((skill, index) => (
           <Grid item xs={12} sm={6} md={4} key={skill.name}>
             <SkillCard skill={skill} index={index} />
+          </Grid>
+        ))}
+      </Grid>
+
+      <Typography 
+        variant="h4" 
+        component="h2" 
+        gutterBottom 
+        align="center" 
+        sx={{ 
+          mb: 4,
+          mt: 6,
+          color: 'primary.main',
+          fontWeight: 300,
+        }}
+      >
+        語言能力
+      </Typography>
+      
+      <Grid container spacing={3} justifyContent="center">
+        {languageSkillsList.map((skill, index) => (
+          <Grid item xs={12} sm={8} md={6} key={skill.name}>
+            <SkillCard skill={skill} index={technicalSkillsList.length + index} />
           </Grid>
         ))}
       </Grid>
