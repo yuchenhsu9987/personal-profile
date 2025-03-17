@@ -5,8 +5,14 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 const projectsList = [
   {
+    title: 'LLM Chat-Bot',
+    description: '基於大型語言模型開發的智能對話機器人。整合了先進的自然語言處理技術，支持多輪對話，並具有上下文理解能力。使用 React 開發前端界面，Firebase 進行部署，提供流暢的用戶體驗。',
+    link: 'https://chat-bot-39815.web.app/',
+    technologies: ['React', 'Firebase', 'LLM', 'Natural Language Processing', 'TypeScript']
+  },
+  {
     title: 'Crypto Tracker',
-    description: '使用 React 和 Firebase 開發的加密貨幣追蹤應用。提供即時價格更新、市場趨勢分析，還有潛力貨幣推薦。',
+    description: '使用 React 和 Firebase 開發的加密貨幣追蹤應用。提供即時價格更新、市場趨勢分析，並支持用戶收藏喜愛的加密貨幣。具有響應式設計，支持多種加密貨幣的實時數據展示。',
     link: 'https://crypto-dba3b.web.app/',
     technologies: ['React', 'Firebase', 'API Integration', 'Material-UI', 'Responsive Design']
   },
