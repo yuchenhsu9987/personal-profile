@@ -437,6 +437,158 @@ const Resume = () => {
                       alignItems: 'center',
                       gap: 1
                     }}>
+                      LLM Chat-Bot
+                      <Box 
+                        component="a"
+                        href="https://chat-bot-39815.web.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{ 
+                          color: 'primary.main',
+                          display: 'flex',
+                          alignItems: 'center',
+                          textDecoration: 'none',
+                          '&:hover': {
+                            opacity: 0.8
+                          }
+                        }}
+                      >
+                        <OpenInNewIcon sx={{ fontSize: 18 }} />
+                      </Box>
+                    </Typography>
+                    <Typography variant="body2" sx={{ 
+                      lineHeight: 1.5,
+                      mb: 0.5
+                    }}>
+                      基於大型語言模型開發的智能對話機器人，支持多輪對話並具有上下文理解能力。使用 React 開發前端界面，Firebase 進行部署。
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      <Chip label="React" size="small" color="primary" variant="outlined" />
+                      <Chip label="Firebase" size="small" color="primary" variant="outlined" />
+                      <Chip label="LLM" size="small" color="primary" variant="outlined" />
+                      <Chip label="TypeScript" size="small" color="primary" variant="outlined" />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={3} sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'flex-start',
+                    pt: { xs: 2, md: 0 }
+                  }}>
+                    <Box sx={{ 
+                      p: 0.75,
+                      border: '1px solid',
+                      borderColor: 'primary.light',
+                      borderRadius: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: 0.25
+                    }}>
+                      <QRCodeSVG
+                        value="https://chat-bot-39815.web.app/"
+                        size={48}
+                        level="L"
+                        includeMargin={false}
+                      />
+                      <Typography variant="caption" sx={{ 
+                        color: 'text.secondary',
+                        fontSize: '11px'
+                      }}>
+                        掃碼訪問
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Box>
+
+              <Box sx={{ mb: 3 }}>
+                <Grid container spacing={2} alignItems="flex-start">
+                  <Grid item xs={12} md={9}>
+                    <Typography variant="h3" sx={{ 
+                      fontSize: '16px',
+                      fontWeight: 500,
+                      mb: 0.5,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1
+                    }}>
+                      Crypto Tracker
+                      <Box 
+                        component="a"
+                        href="https://crypto-dba3b.web.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{ 
+                          color: 'primary.main',
+                          display: 'flex',
+                          alignItems: 'center',
+                          textDecoration: 'none',
+                          '&:hover': {
+                            opacity: 0.8
+                          }
+                        }}
+                      >
+                        <OpenInNewIcon sx={{ fontSize: 18 }} />
+                      </Box>
+                    </Typography>
+                    <Typography variant="body2" sx={{ 
+                      lineHeight: 1.5,
+                      mb: 0.5
+                    }}>
+                      使用 React 和 Firebase 開發的加密貨幣追蹤應用。提供即時價格更新、市場趨勢分析，並支持用戶收藏喜愛的加密貨幣。
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      <Chip label="React" size="small" color="primary" variant="outlined" />
+                      <Chip label="Firebase" size="small" color="primary" variant="outlined" />
+                      <Chip label="Material-UI" size="small" color="primary" variant="outlined" />
+                      <Chip label="API Integration" size="small" color="primary" variant="outlined" />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={3} sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'flex-start',
+                    pt: { xs: 2, md: 0 }
+                  }}>
+                    <Box sx={{ 
+                      p: 0.75,
+                      border: '1px solid',
+                      borderColor: 'primary.light',
+                      borderRadius: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: 0.25
+                    }}>
+                      <QRCodeSVG
+                        value="https://crypto-dba3b.web.app/"
+                        size={48}
+                        level="L"
+                        includeMargin={false}
+                      />
+                      <Typography variant="caption" sx={{ 
+                        color: 'text.secondary',
+                        fontSize: '11px'
+                      }}>
+                        掃碼訪問
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Box>
+
+              <Box sx={{ mb: 3 }}>
+                <Grid container spacing={2} alignItems="flex-start">
+                  <Grid item xs={12} md={9}>
+                    <Typography variant="h3" sx={{ 
+                      fontSize: '16px',
+                      fontWeight: 500,
+                      mb: 0.5,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1
+                    }}>
                       吶語症模型測試與收音系統
                       <Box 
                         component="a"
@@ -575,6 +727,7 @@ const Resume = () => {
                   </Grid>
                 </Grid>
               </Box>
+
             </Box>
           </motion.div>
 
