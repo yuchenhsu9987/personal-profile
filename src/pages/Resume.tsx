@@ -139,7 +139,7 @@ const Resume = () => {
         );
 
         // 下載 PDF
-        pdf.save(language === 'en' ? 'Yu-Chen-Hsu-Resume.pdf' : '許育宸-履歷.pdf');
+        pdf.save(language === 'en' ? 'RufusHSU-Resume.pdf' : '許育宸-履歷.pdf');
       } catch (error) {
         console.error('PDF 生成失敗:', error);
         alert(language === 'en' ? 'PDF generation failed, please try again later' : 'PDF 生成失敗，請稍後再試');
@@ -242,7 +242,7 @@ const Resume = () => {
             <Box sx={{ textAlign: 'center', py: 1 }}>
               <Box sx={{ mb: 1, display: 'flex', justifyContent: 'center' }}>
                 <Avatar
-                  alt={language === 'en' ? 'Yu-Chen Hsu' : '許育宸'}
+                  alt={language === 'en' ? 'Yu-Chen HSU' : '許育宸'}
                   src={profileImage}
                   sx={{
                     width: 80,
@@ -262,7 +262,7 @@ const Resume = () => {
                 mb: 0.5,
                 fontWeight: 300
               }}>
-                {language === 'en' ? 'Yu-Chen Hsu' : '許育宸'}
+                {language === 'en' ? 'Yu-Chen HSU' : '許育宸'}
               </Typography>
               <Typography variant="h2" sx={{ 
                 fontSize: '16px',

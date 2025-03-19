@@ -69,22 +69,22 @@ export const translations = {
     home: '首頁',
     about: '關於',
     skills: '技能',
-    projects: '項目',
-    contact: '聯繫',
+    projects: '專案',
+    contact: '聯絡',
     resume: '履歷',
     education: '學歷',
     
     // Home section
     greeting: '你好，我是',
-    role: '全棧開發工程師',
-    downloadCV: '下載簡歷',
+    role: '全端開發工程師',
+    downloadCV: '下載履歷',
     welcomeMessage: '歡迎來到我的作品集',
-    viewProjects: '查看項目',
+    viewProjects: '查看專案',
     learnMore: '了解更多',
     
     // About section
     aboutMe: '關於我',
-    aboutDescription: '我是一位熱衷於現代網絡技術的全棧開發工程師。',
+    aboutDescription: '我是一位熱衷於現代網路技術的全端開發工程師。',
     
     // Skills section
     skillsTitle: '技能專長',
@@ -94,11 +94,11 @@ export const translations = {
     skillsDescription: '我的技術專長包括：',
     
     // Projects section
-    projectsTitle: '項目展示',
-    viewProject: '查看項目',
-    projectsDescription: '以下是我最近的一些項目：',
-    sourceCode: '源代碼',
-    liveDemo: '在線演示',
+    projectsTitle: '專案展示',
+    viewProject: '查看專案',
+    projectsDescription: '以下是我最近的一些專案：',
+    sourceCode: '原始碼',
+    liveDemo: '線上展示',
     
     // Education section
     educationTitle: '教育背景',
@@ -117,7 +117,7 @@ export const translations = {
     download: '下載PDF',
     
     // Contact section
-    contactTitle: '聯繫我',
+    contactTitle: '聯絡我',
     sendMessage: '發送訊息',
     name: '姓名',
     email: '電子郵件',

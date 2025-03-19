@@ -57,7 +57,7 @@ const Home = () => {
           />
           <Avatar
             src={profileImage}
-            alt={language === 'en' ? 'Yu-Chen Hsu' : '許育宸'}
+            alt={language === 'en' ? 'Yu-Chen HSU' : '許育宸'}
             sx={{
               width: { xs: 150, sm: 180 },
               height: { xs: 150, sm: 180 },
@@ -91,7 +91,7 @@ const Home = () => {
               letterSpacing: 2,
             }}
           >
-            {language === 'en' ? 'Yu-Chen Hsu' : '許育宸'}
+            {language === 'en' ? 'Yu-Chen HSU' : '許育宸'}
           </Typography>
         </motion.div>
 
