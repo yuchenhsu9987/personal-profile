@@ -55,14 +55,14 @@ const Contact = () => {
             content="0975-115-201"
             delay={0.4}
           />
-          <ContactItem
+          {/* <ContactItem
             icon={<GitHubIcon fontSize="large" />}
             title="GitHub"
             content="github.com/yuchenhsu9987"
             delay={0.6}
-          />
+          /> */}
         </Grid>
-
+{/* 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -76,7 +76,7 @@ const Contact = () => {
               {t('aboutDescription')}
             </Typography>
           </Paper>
-        </motion.div>
+        </motion.div> */}
       </Box>
     </Container>
   );

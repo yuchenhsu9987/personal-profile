@@ -84,7 +84,7 @@ export const translations = {
     
     // About section
     aboutMe: '關於我',
-    aboutDescription: '我是一位熱衷於現代網路技術的全端開發工程師。',
+    aboutDescription: '我是一位熱衷於現代Ai技術的全端開發工程師。',
     
     // Skills section
     skillsTitle: '技能專長',
