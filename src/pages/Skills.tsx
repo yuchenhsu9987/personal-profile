@@ -11,8 +11,8 @@ const Skills = () => {
       name: language === 'en' ? 'Python Development' : 'Python 開發',
       level: 95,
       description: language === 'en' 
-        ? 'Proficient in Python development, including data analysis, machine learning applications, and web backend development'
-        : '精通 Python 開發，包括數據分析、機器學習應用和網頁後端開發',
+        ? 'Python development, including data analysis, machine learning applications, and web backend development'
+        : 'Python 開發，包括數據分析、機器學習/深度學習應用和網頁後端開發',
       tags: ['Python', 'NumPy', 'Pandas', 'Flask', 'Django']
     },
     { 
