@@ -22,11 +22,13 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import Tooltip from '@mui/material/Tooltip';
 import Zoom from '@mui/material/Zoom';
 import { useLocation } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Resume = () => {
   const resumeRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const location = useLocation();
+  const { language } = useLanguage();
 
   const handleDownload = async () => {
     if (resumeRef.current) {
@@ -137,10 +139,10 @@ const Resume = () => {
         );
 
         // 下載 PDF
-        pdf.save('許育宸-履歷.pdf');
+        pdf.save(language === 'en' ? 'Yu-Chen-Hsu-Resume.pdf' : '許育宸-履歷.pdf');
       } catch (error) {
         console.error('PDF 生成失敗:', error);
-        alert('PDF 生成失敗，請稍後再試');
+        alert(language === 'en' ? 'PDF generation failed, please try again later' : 'PDF 生成失敗，請稍後再試');
       } finally {
         setIsGenerating(false);
       }
@@ -167,7 +169,7 @@ const Resume = () => {
         <Box sx={{ textAlign: 'center' }}>
           <CircularProgress color="inherit" />
           <Typography sx={{ mt: 2, color: 'white' }}>
-            正在生成 PDF...
+            {language === 'en' ? 'Generating PDF...' : '正在生成 PDF...'}
           </Typography>
         </Box>
       </Backdrop>
@@ -211,7 +213,9 @@ const Resume = () => {
                 }
               }}
             >
-              {isGenerating ? '生成中...' : '下載履歷'}
+              {isGenerating 
+                ? (language === 'en' ? 'Generating...' : '生成中...') 
+                : (language === 'en' ? 'Download Resume' : '下載履歷')}
             </Button>
           </motion.div>
         </Box>
@@ -238,7 +242,7 @@ const Resume = () => {
             <Box sx={{ textAlign: 'center', py: 1 }}>
               <Box sx={{ mb: 1, display: 'flex', justifyContent: 'center' }}>
                 <Avatar
-                  alt="許育宸"
+                  alt={language === 'en' ? 'Yu-Chen Hsu' : '許育宸'}
                   src={profileImage}
                   sx={{
                     width: 80,
@@ -258,7 +262,7 @@ const Resume = () => {
                 mb: 0.5,
                 fontWeight: 300
               }}>
-                許育宸
+                {language === 'en' ? 'Yu-Chen Hsu' : '許育宸'}
               </Typography>
               <Typography variant="h2" sx={{ 
                 fontSize: '16px',
@@ -266,7 +270,9 @@ const Resume = () => {
                 mb: 1,
                 fontWeight: 400
               }}>
-                資訊工程研究生 | 軟體開發者
+                {language === 'en' 
+                  ? 'Graduate Student in Computer Science | Software Developer' 
+                  : '資訊工程研究生 | 軟體開發者'}
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -292,7 +298,7 @@ const Resume = () => {
                 fontWeight: 500,
                 mb: 1
               }}>
-                教育背景
+                {language === 'en' ? 'Education' : '教育背景'}
               </Typography>
               
               <Timeline sx={{ 
@@ -309,7 +315,7 @@ const Resume = () => {
                     color: 'text.secondary',
                     fontSize: '13px'
                   }}>
-                    2023.09 - 至今
+                    {language === 'en' ? '2023.09 - Present' : '2023.09 - 至今'}
                   </TimelineOppositeContent>
                   <TimelineSeparator>
                     <TimelineDot color="primary" sx={{ p: 0.5 }}>
@@ -324,17 +330,21 @@ const Resume = () => {
                         fontWeight: 500,
                         mb: 0.25
                       }}>
-                        國立臺北大學
+                        {language === 'en' ? 'National Taipei University' : '國立臺北大學'}
                       </Typography>
                       <Typography variant="body2" sx={{ 
                         color: '#666666',
                         mb: 0.25,
                         fontSize: '13px'
                       }}>
-                        資訊工程研究所 - 碩士班
+                        {language === 'en' 
+                          ? 'Master of Science in Computer Science and Information Engineering' 
+                          : '資訊工程研究所 - 碩士班'}
                       </Typography>
                       <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
-                        主要研究方向為自然語言處理與語音辨識，目前參與科技部國家科學及技術委員會包容導向計劃子計劃二。
+                        {language === 'en'
+                          ? 'Research focuses on Natural Language Processing and Speech Recognition. Currently participating in the MOST Inclusive-Oriented Project.'
+                          : '主要研究方向為自然語言處理與語音辨識，目前參與科技部國家科學及技術委員會包容導向計劃子計劃二。'}
                       </Typography>
                     </Box>
                   </TimelineContent>
@@ -360,17 +370,23 @@ const Resume = () => {
                         fontWeight: 500,
                         mb: 0.25
                       }}>
-                        國立高雄科技大學
+                        {language === 'en' 
+                          ? 'National Kaohsiung University of Science and Technology' 
+                          : '國立高雄科技大學'}
                       </Typography>
                       <Typography variant="body2" sx={{ 
                         color: '#666666',
                         mb: 0.25,
                         fontSize: '13px'
                       }}>
-                        資訊工程學系 - 學士
+                        {language === 'en'
+                          ? 'Bachelor of Science in Computer Science and Information Engineering'
+                          : '資訊工程學系 - 學士'}
                       </Typography>
                       <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
-                        獨立研究專題為「中文錯別字校正系統」，與國立臺灣師範大學華語文與科技研究中心合作。
+                        {language === 'en'
+                          ? 'Independent research project on "Chinese Character Error Correction System" in collaboration with NTNU Chinese Language Technology Center.'
+                          : '獨立研究專題為「中文錯別字校正系統」，與國立臺灣師範大學華語文與科技研究中心合作。'}
                       </Typography>
                     </Box>
                   </TimelineContent>
@@ -388,7 +404,7 @@ const Resume = () => {
                 fontWeight: 500,
                 mb: 1
               }}>
-                專業技能
+                {language === 'en' ? 'Professional Skills' : '專業技能'}
               </Typography>
 
               <Grid container spacing={1.5}>
@@ -399,7 +415,7 @@ const Resume = () => {
                       fontWeight: 500,
                       mb: 0.75
                     }}>
-                      程式語言
+                      {language === 'en' ? 'Programming Languages' : '程式語言'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                       <Chip label="Python" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
@@ -418,13 +434,37 @@ const Resume = () => {
                       fontWeight: 500,
                       mb: 0.75
                     }}>
-                      領域知識
+                      {language === 'en' ? 'Domain Knowledge' : '領域知識'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="自然語言處理" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
-                      <Chip label="語音辨識" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
-                      <Chip label="機器學習" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
-                      <Chip label="深度學習" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip 
+                        label={language === 'en' ? 'Natural Language Processing' : '自然語言處理'} 
+                        size="small" 
+                        color="primary" 
+                        variant="outlined" 
+                        sx={{ height: '20px' }} 
+                      />
+                      <Chip 
+                        label={language === 'en' ? 'Speech Recognition' : '語音辨識'} 
+                        size="small" 
+                        color="primary" 
+                        variant="outlined" 
+                        sx={{ height: '20px' }} 
+                      />
+                      <Chip 
+                        label={language === 'en' ? 'Machine Learning' : '機器學習'} 
+                        size="small" 
+                        color="primary" 
+                        variant="outlined" 
+                        sx={{ height: '20px' }} 
+                      />
+                      <Chip 
+                        label={language === 'en' ? 'Deep Learning' : '深度學習'} 
+                        size="small" 
+                        color="primary" 
+                        variant="outlined" 
+                        sx={{ height: '20px' }} 
+                      />
                     </Box>
                   </Paper>
                 </Grid>
@@ -436,7 +476,7 @@ const Resume = () => {
                       fontWeight: 500,
                       mb: 0.75
                     }}>
-                      工具與框架
+                      {language === 'en' ? 'Tools & Frameworks' : '工具與框架'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                       <Chip label="TensorFlow" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
@@ -460,7 +500,7 @@ const Resume = () => {
                 fontWeight: 500,
                 mb: 1
               }}>
-                專案經驗
+                {language === 'en' ? 'Projects' : '專案經驗'}
               </Typography>
 
               <Grid container spacing={1.5}>
@@ -491,7 +531,9 @@ const Resume = () => {
                       </Box>
                     </Box>
                     <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
-                      基於大型語言模型開發的智能對話機器人，支持多輪對話並具有上下文理解能力。
+                      {language === 'en'
+                        ? 'An intelligent chatbot developed with large language models, supporting multi-turn dialogue with context understanding capabilities.'
+                        : '基於大型語言模型開發的智能對話機器人，支持多輪對話並具有上下文理解能力。'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                       <Chip label="React" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
@@ -528,7 +570,9 @@ const Resume = () => {
                       </Box>
                     </Box>
                     <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
-                      使用 React 開發的加密貨幣追蹤應用，提供即時價格更新和市場趨勢分析。
+                      {language === 'en'
+                        ? 'A cryptocurrency tracking application developed with React, providing real-time price updates and market trend analysis.'
+                        : '使用 React 開發的加密貨幣追蹤應用，提供即時價格更新和市場趨勢分析。'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                       <Chip label="React" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
@@ -547,7 +591,9 @@ const Resume = () => {
                         fontWeight: 500,
                         flex: 1
                       }}>
-                        吶語症模型測試系統
+                        {language === 'en' 
+                          ? 'Selective Mutism Model Testing System' 
+                          : '吶語症模型測試系統'}
                       </Typography>
                       <Box 
                         component="a"
@@ -565,12 +611,26 @@ const Resume = () => {
                       </Box>
                     </Box>
                     <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
-                      開發針對吶語症患者的語音收集和測試平台，用於收集語音樣本並進行即時測試。
+                      {language === 'en'
+                        ? 'Developed a platform for collecting and testing voice samples from selective mutism patients, providing real-time testing capabilities.'
+                        : '開發針對吶語症患者的語音收集和測試平台，用於收集語音樣本並進行即時測試。'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                       <Chip label="Python" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
-                      <Chip label="語音處理" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
-                      <Chip label="深度學習" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip 
+                        label={language === 'en' ? 'Speech Processing' : '語音處理'} 
+                        size="small" 
+                        color="primary" 
+                        variant="outlined" 
+                        sx={{ height: '20px' }} 
+                      />
+                      <Chip 
+                        label={language === 'en' ? 'Deep Learning' : '深度學習'} 
+                        size="small" 
+                        color="primary" 
+                        variant="outlined" 
+                        sx={{ height: '20px' }} 
+                      />
                     </Box>
                   </Paper>
                 </Grid>
@@ -584,7 +644,9 @@ const Resume = () => {
                         fontWeight: 500,
                         flex: 1
                       }}>
-                        吶語症數據分析平台
+                        {language === 'en'
+                          ? 'Selective Mutism Data Analysis Platform'
+                          : '吶語症數據分析平台'}
                       </Typography>
                       <Box 
                         component="a"
@@ -602,11 +664,25 @@ const Resume = () => {
                       </Box>
                     </Box>
                     <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
-                      建立數據分析平台，用於分析和視覺化吶語症語音識別的結果，協助研究改進。
+                      {language === 'en'
+                        ? 'Built a data analysis platform for analyzing and visualizing selective mutism speech recognition results, assisting research improvements.'
+                        : '建立數據分析平台，用於分析和視覺化吶語症語音識別的結果，協助研究改進。'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      <Chip label="數據分析" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
-                      <Chip label="視覺化" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip 
+                        label={language === 'en' ? 'Data Analysis' : '數據分析'} 
+                        size="small" 
+                        color="primary" 
+                        variant="outlined" 
+                        sx={{ height: '20px' }} 
+                      />
+                      <Chip 
+                        label={language === 'en' ? 'Visualization' : '視覺化'} 
+                        size="small" 
+                        color="primary" 
+                        variant="outlined" 
+                        sx={{ height: '20px' }} 
+                      />
                       <Chip label="React" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
                     </Box>
                   </Paper>
@@ -624,7 +700,7 @@ const Resume = () => {
                 fontWeight: 500,
                 mb: 1
               }}>
-                其他
+                {language === 'en' ? 'Others' : '其他'}
               </Typography>
 
               <Grid container spacing={1.5}>
@@ -635,10 +711,12 @@ const Resume = () => {
                       fontWeight: 500,
                       mb: 0.25
                     }}>
-                      語言能力
+                      {language === 'en' ? 'Language Skills' : '語言能力'}
                     </Typography>
                     <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
-                      中文（母語）、英文（中級 - TOEIC 665分）
+                      {language === 'en' 
+                        ? 'Chinese (Native), English (Intermediate - TOEIC 660)' 
+                        : '中文（母語）、英文（中級 - TOEIC 660分）'}
                     </Typography>
                   </Paper>
                 </Grid>
@@ -650,10 +728,12 @@ const Resume = () => {
                       fontWeight: 500,
                       mb: 0.25
                     }}>
-                      研究興趣
+                      {language === 'en' ? 'Research Interests' : '研究興趣'}
                     </Typography>
                     <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
-                      自然語言處理、語音辨識、電腦視覺
+                      {language === 'en'
+                        ? 'Natural Language Processing, Speech Recognition, Computer Vision'
+                        : '自然語言處理、語音辨識、電腦視覺'}
                     </Typography>
                   </Paper>
                 </Grid>
@@ -665,10 +745,12 @@ const Resume = () => {
                       fontWeight: 500,
                       mb: 0.25
                     }}>
-                      個人興趣
+                      {language === 'en' ? 'Personal Interests' : '個人興趣'}
                     </Typography>
                     <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
-                      運動（籃球、羽球、網球）、健身、加密貨幣研究
+                      {language === 'en'
+                        ? 'Sports (Basketball, Badminton, Tennis), Fitness, Cryptocurrency Research'
+                        : '運動（籃球、羽球、網球）、健身、加密貨幣研究'}
                     </Typography>
                   </Paper>
                 </Grid>
@@ -680,7 +762,9 @@ const Resume = () => {
 
           <Box sx={{ textAlign: 'center', py: 0.5 }}>
             <Typography variant="body2" sx={{ color: '#666666', fontSize: '12px' }}>
-              此履歷更新於 2025年3月
+              {language === 'en' 
+                ? 'Last updated: March 2025'
+                : '此履歷更新於 2025年3月'}
             </Typography>
           </Box>
         </Box>

@@ -4,6 +4,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ContactItem = ({ icon, title, content, delay }: { icon: React.ReactNode; title: string; content: string; delay: number }) => {
   return (
@@ -32,23 +33,25 @@ const ContactItem = ({ icon, title, content, delay }: { icon: React.ReactNode; t
 };
 
 const Contact = () => {
+  const { t } = useLanguage();
+
   return (
     <Container>
       <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-        聯絡方式
+        {t('contactTitle')}
       </Typography>
 
       <Box sx={{ maxWidth: 800, mx: 'auto' }}>
         <Grid container spacing={3}>
           <ContactItem
             icon={<EmailIcon fontSize="large" />}
-            title="電子郵件"
+            title={t('email')}
             content="rufushsu9987@gmail.com"
             delay={0.2}
           />
           <ContactItem
             icon={<PhoneIcon fontSize="large" />}
-            title="聯絡電話"
+            title={t('phone')}
             content="0975-115-201"
             delay={0.4}
           />
@@ -67,10 +70,10 @@ const Contact = () => {
         >
           <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
             <Typography variant="h6" gutterBottom>
-              關於合作
+              {t('contactTitle')}
             </Typography>
             <Typography variant="body1">
-              我對軟體開發、機器學習等領域的專案合作很感興趣。如果您有任何想法或建議，歡迎隨時與我聯絡！
+              {t('aboutDescription')}
             </Typography>
           </Paper>
         </motion.div>

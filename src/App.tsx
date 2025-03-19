@@ -11,6 +11,7 @@ import Skills from './pages/Skills';
 import Contact from './pages/Contact';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 const theme = createTheme({
   palette: {
@@ -98,53 +99,55 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-          {isMobile && (
-            <IconButton
-              color="primary"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{
-                position: 'fixed',
-                top: 16,
-                left: 16,
-                zIndex: 1200,
-                backgroundColor: 'background.paper',
-                boxShadow: 1,
-                '&:hover': {
+    <LanguageProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+            {isMobile && (
+              <IconButton
+                color="primary"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{
+                  position: 'fixed',
+                  top: 16,
+                  left: 16,
+                  zIndex: 1200,
                   backgroundColor: 'background.paper',
-                },
+                  boxShadow: 1,
+                  '&:hover': {
+                    backgroundColor: 'background.paper',
+                  },
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
+            <Navbar mobileOpen={mobileOpen} onClose={handleDrawerToggle} isMobile={isMobile} />
+            <Box
+              component="main"
+              sx={{
+                flexGrow: 1,
+                p: { xs: 2, sm: 3 },
+                width: { xs: '100%', md: `calc(100% - ${240}px)` },
+                mt: { xs: 7, md: 0 },
               }}
             >
-              <MenuIcon />
-            </IconButton>
-          )}
-          <Navbar mobileOpen={mobileOpen} onClose={handleDrawerToggle} isMobile={isMobile} />
-          <Box
-            component="main"
-            sx={{
-              flexGrow: 1,
-              p: { xs: 2, sm: 3 },
-              width: { xs: '100%', md: `calc(100% - ${240}px)` },
-              mt: { xs: 7, md: 0 },
-            }}
-          >
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="resume" element={<Resume />} />
-              <Route path="education" element={<Education />} />
-              <Route path="projects" element={<Projects />} />
-              <Route path="skills" element={<Skills />} />
-              <Route path="contact" element={<Contact />} />
-            </Routes>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="resume" element={<Resume />} />
+                <Route path="education" element={<Education />} />
+                <Route path="projects" element={<Projects />} />
+                <Route path="skills" element={<Skills />} />
+                <Route path="contact" element={<Contact />} />
+              </Routes>
+            </Box>
           </Box>
-        </Box>
-      </Router>
-    </ThemeProvider>
+        </Router>
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }
 

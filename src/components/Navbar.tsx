@@ -8,6 +8,8 @@ import CodeIcon from '@mui/icons-material/Code';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import DescriptionIcon from '@mui/icons-material/Description';
 import BuildIcon from '@mui/icons-material/Build';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const drawerWidth = 240;
 
@@ -21,14 +23,15 @@ const Navbar: React.FC<NavbarProps> = ({ mobileOpen, onClose, isMobile }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
+  const { t } = useLanguage();
 
   const menuItems = [
-    { text: '首頁', icon: <HomeIcon />, path: '/' },
-    { text: '履歷', icon: <DescriptionIcon />, path: 'resume' },
-    { text: '學歷', icon: <SchoolIcon />, path: 'education' },
-    { text: '專案', icon: <CodeIcon />, path: 'projects' },
-    { text: '技能', icon: <BuildIcon />, path: 'skills' },
-    { text: '聯絡', icon: <ContactMailIcon />, path: 'contact' },
+    { text: t('home'), icon: <HomeIcon />, path: '/' },
+    { text: t('resume'), icon: <DescriptionIcon />, path: 'resume' },
+    { text: t('education'), icon: <SchoolIcon />, path: 'education' },
+    { text: t('projects'), icon: <CodeIcon />, path: 'projects' },
+    { text: t('skills'), icon: <BuildIcon />, path: 'skills' },
+    { text: t('contact'), icon: <ContactMailIcon />, path: 'contact' },
   ];
 
   const isActive = (path: string) => {
@@ -57,10 +60,12 @@ const Navbar: React.FC<NavbarProps> = ({ mobileOpen, onClose, isMobile }) => {
             color: theme.palette.primary.main,
             fontWeight: 500,
             letterSpacing: 1,
+            marginBottom: 2,
           }}
         >
-          個人簡介
+          {t('aboutMe')}
         </Typography>
+        <LanguageSwitcher />
       </Box>
       <List sx={{ pt: 2 }}>
         {menuItems.map((item) => (

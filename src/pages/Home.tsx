@@ -6,14 +6,15 @@ import DownloadIcon from '@mui/icons-material/Download';
 import profileImage from '../assets/images/profile.png';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Home = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { language } = useLanguage();
 
   const handleDownloadResume = () => {
-    // 跳轉到履歷頁面並傳遞下載參數
     navigate('/resume?download=true');
   };
 
@@ -56,7 +57,7 @@ const Home = () => {
           />
           <Avatar
             src={profileImage}
-            alt="個人照片"
+            alt={language === 'en' ? 'Yu-Chen Hsu' : '許育宸'}
             sx={{
               width: { xs: 150, sm: 180 },
               height: { xs: 150, sm: 180 },
@@ -90,7 +91,7 @@ const Home = () => {
               letterSpacing: 2,
             }}
           >
-            許育宸
+            {language === 'en' ? 'Yu-Chen Hsu' : '許育宸'}
           </Typography>
         </motion.div>
 
@@ -110,7 +111,9 @@ const Home = () => {
               px: { xs: 2, sm: 0 },
             }}
           >
-            資訊工程研究生 | 軟體開發者
+            {language === 'en' 
+              ? 'Graduate Student in Computer Science | Software Developer' 
+              : '資訊工程研究生 | 軟體開發者'}
           </Typography>
         </motion.div>
 
@@ -140,9 +143,9 @@ const Home = () => {
               fontSize: { xs: '0.95rem', sm: '1rem' },
             }}
           >
-            目前就讀於國立臺北大學資訊工程研究所二年級，
-            擁有紮實的程式設計基礎，熱衷於探索新技術，期待能夠為科技發展貢獻一份力量。
-            目前研究專注於自然語言處理（Natural Language Processing）領域，特別是大型語言模型（LLM）和自動語音辨識（ASR）技術的應用與優化。
+            {language === 'en' 
+              ? "Currently a second-year graduate student at National Taipei University's Department of Computer Science and Information Engineering. With a solid foundation in programming, I am passionate about exploring new technologies and eager to contribute to technological advancement. My research focuses on Natural Language Processing (NLP), particularly in the application and optimization of Large Language Models (LLM) and Automatic Speech Recognition (ASR) technologies."
+              : '目前就讀於國立臺北大學資訊工程研究所二年級，擁有紮實的程式設計基礎，熱衷於探索新技術，期待能夠為科技發展貢獻一份力量。目前研究專注於自然語言處理（Natural Language Processing）領域，特別是大型語言模型（LLM）和自動語音辨識（ASR）技術的應用與優化。'}
           </Typography>
         </Paper>
 
@@ -171,7 +174,7 @@ const Home = () => {
               flex: { xs: '1 1 calc(50% - 0.75rem)', sm: '0 0 auto' },
             }}
           >
-            學歷背景
+            {language === 'en' ? 'Education' : '學歷'}
           </Button>
           <Button
             variant="contained"
@@ -189,7 +192,7 @@ const Home = () => {
               flex: { xs: '1 1 calc(50% - 0.75rem)', sm: '0 0 auto' },
             }}
           >
-            專案作品
+            {language === 'en' ? 'Projects' : '專案'}
           </Button>
           <Button
             variant="outlined"
@@ -208,7 +211,7 @@ const Home = () => {
               flex: { xs: '1 1 calc(50% - 0.75rem)', sm: '0 0 auto' },
             }}
           >
-            下載履歷
+            {language === 'en' ? 'Download CV' : '下載履歷'}
           </Button>
           <Button
             variant="outlined"
@@ -226,7 +229,7 @@ const Home = () => {
               flex: { xs: '1 1 calc(50% - 0.75rem)', sm: '0 0 auto' },
             }}
           >
-            聯絡我
+            {language === 'en' ? 'Contact' : '聯絡我'}
           </Button>
         </Box>
       </Box>

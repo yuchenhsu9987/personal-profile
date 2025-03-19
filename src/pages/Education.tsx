@@ -2,10 +2,12 @@ import React from 'react';
 import { Container, Typography, Paper, useTheme, useMediaQuery } from '@mui/material';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
 import SchoolIcon from '@mui/icons-material/School';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Education = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { language } = useLanguage();
 
   return (
     <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 } }}>
@@ -20,7 +22,7 @@ const Education = () => {
           color: 'primary.main',
         }}
       >
-        學歷背景
+        {language === 'en' ? 'Education Background' : '學歷背景'}
       </Typography>
       
       <Timeline position="alternate" sx={{ 
@@ -57,7 +59,7 @@ const Education = () => {
                   color: 'primary.main',
                 }}
               >
-                國立臺北大學
+                {language === 'en' ? 'National Taipei University' : '國立臺北大學'}
               </Typography>
               <Typography 
                 color="textSecondary"
@@ -66,7 +68,9 @@ const Education = () => {
                   mt: 0.5,
                 }}
               >
-                資訊工程研究所 - 碩士班
+                {language === 'en' 
+                  ? 'Master of Science in Computer Science and Information Engineering' 
+                  : '資訊工程研究所 - 碩士班'}
               </Typography>
               <Typography 
                 color="textSecondary"
@@ -74,7 +78,7 @@ const Education = () => {
                   fontSize: { xs: '0.75rem', sm: '0.875rem' },
                 }}
               >
-                （2023.09 - 至今）
+                {language === 'en' ? '(2023.09 - Present)' : '（2023.09 - 至今）'}
               </Typography>
               <Typography 
                 variant="body2" 
@@ -84,8 +88,9 @@ const Education = () => {
                   lineHeight: 1.6,
                 }}
               >
-                主要研究方向為自然語言處理與語音辨識，目前參與科技部國家科學及技術委員會(國科會)包容導向計劃子計劃二，
-                致力於開發吶語症辨識系統，運用深度學習技術協助語言障礙者進行溝通。
+                {language === 'en' 
+                  ? 'Research focuses on Natural Language Processing and Speech Recognition. Currently participating in the Ministry of Science and Technology (MOST) Inclusive-Oriented Project Subproject 2, dedicated to developing a selective mutism recognition system using deep learning technology to assist individuals with language disabilities in communication.'
+                  : '主要研究方向為自然語言處理與語音辨識，目前參與科技部國家科學及技術委員會(國科會)包容導向計劃子計劃二，致力於開發吶語症辨識系統，運用深度學習技術協助語言障礙者進行溝通。'}
               </Typography>
             </Paper>
           </TimelineContent>
@@ -117,7 +122,9 @@ const Education = () => {
                   color: 'primary.main',
                 }}
               >
-                國立高雄科技大學
+                {language === 'en' 
+                  ? 'National Kaohsiung University of Science and Technology' 
+                  : '國立高雄科技大學'}
               </Typography>
               <Typography 
                 color="textSecondary"
@@ -126,7 +133,9 @@ const Education = () => {
                   mt: 0.5,
                 }}
               >
-                資訊工程學系 - 學士
+                {language === 'en' 
+                  ? 'Bachelor of Science in Computer Science and Information Engineering' 
+                  : '資訊工程學系 - 學士'}
               </Typography>
               <Typography 
                 color="textSecondary"
@@ -134,7 +143,7 @@ const Education = () => {
                   fontSize: { xs: '0.75rem', sm: '0.875rem' },
                 }}
               >
-                （2019.09 - 2023.06）
+                {language === 'en' ? '(2019.09 - 2023.06)' : '（2019.09 - 2023.06）'}
               </Typography>
               <Typography 
                 variant="body2" 
@@ -144,8 +153,9 @@ const Education = () => {
                   lineHeight: 1.6,
                 }}
               >
-                獨立研究專題主題為「中文錯別字校正系統」，
-                與國立臺灣師範大學華語文與科技中心合作，將研究成果應用於 SWM 寫作批改平台。
+                {language === 'en' 
+                  ? 'Independent research project focused on "Chinese Character Error Correction System". Collaborated with the Chinese Language and Technology Center at National Taiwan Normal University to apply research results to the SWM Writing Correction Platform.'
+                  : '獨立研究專題主題為「中文錯別字校正系統」，與國立臺灣師範大學華語文與科技中心合作，將研究成果應用於 SWM 寫作批改平台。'}
               </Typography>
             </Paper>
           </TimelineContent>
