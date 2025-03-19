@@ -57,7 +57,7 @@ const Resume = () => {
         // 調整容器大小和縮放
         element.style.width = '210mm';
         element.style.height = 'auto';
-        element.style.padding = '12ffmm';
+        element.style.padding = '12mm';
         element.style.transform = 'scale(1)';
         // 調整基礎字體大小
         element.style.fontSize = '12px';
@@ -80,13 +80,20 @@ const Resume = () => {
 
         // 生成 canvas，提高縮放比例以獲得更好的質量
         const canvas = await html2canvas(element, {
-          scale: 3,
+          scale: 4,
           useCORS: true,
           logging: false,
           allowTaint: true,
           backgroundColor: '#ffffff',
           windowWidth: element.scrollWidth,
-          windowHeight: element.scrollHeight
+          windowHeight: element.scrollHeight,
+          imageTimeout: 0,
+          onclone: (clonedDoc) => {
+            const avatar = clonedDoc.querySelector('img[alt="許育宸"]');
+            if (avatar instanceof HTMLImageElement) {
+              avatar.style.imageRendering = 'high-quality';
+            }
+          }
         });
 
         // 恢復原始樣式
@@ -104,30 +111,29 @@ const Resume = () => {
         // 計算適當的縮放比例
         const pageWidth = 210;
         const pageHeight = 297;
-        const margin = 5; // 減少邊距以容納更大的內容
+        const margin = 5;
 
         const imgWidth = pageWidth - (margin * 2);
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-        // 如果高度超過頁面，進行額外縮放
         const scaleFactor = Math.min(1, (pageHeight - margin * 2) / imgHeight);
         const finalWidth = imgWidth * scaleFactor;
         const finalHeight = imgHeight * scaleFactor;
 
-        // 計算居中位置
         const xPosition = (pageWidth - finalWidth) / 2;
         const yPosition = (pageHeight - finalHeight) / 2;
 
-        // 添加到 PDF，提高圖片質量
+        // 添加到 PDF，使用更高的图像质量设置
         pdf.addImage(
-          canvas.toDataURL('image/jpeg', 1.0),
-          'JPEG',
+          canvas.toDataURL('image/png', 1.0),
+          'PNG',
           xPosition,
           yPosition,
           finalWidth,
           finalHeight,
           undefined,
-          'FAST'
+          'FAST',
+          0
         );
 
         // 下載 PDF
