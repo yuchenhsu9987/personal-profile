@@ -144,17 +144,6 @@ const Home = () => {
             擁有紮實的程式設計基礎，熱衷於探索新技術，期待能夠為科技發展貢獻一份力量。
             目前研究專注於自然語言處理（Natural Language Processing）領域，特別是大型語言模型（LLM）和自動語音辨識（ASR）技術的應用與優化。
           </Typography>
-          <Typography 
-            variant="body1"
-            sx={{
-              color: 'text.primary',
-              lineHeight: 1.8,
-              fontSize: { xs: '0.95rem', sm: '1rem' },
-            }}
-          >
-            研究方向自然語言處理，並具有實際的專案開發經驗。
-            在學術研究和實務應用之間，我追求理論與實踐的完美結合。
-          </Typography>
         </Paper>
 
         <Box 
