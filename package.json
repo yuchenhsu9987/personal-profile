@@ -1,7 +1,7 @@
 {
   "name": "personal-profile",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://yuchenhsu9987.github.io/personal-profile",
   "type": "module",
   "dependencies": {
