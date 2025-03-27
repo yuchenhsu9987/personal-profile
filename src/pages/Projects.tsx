@@ -30,17 +30,17 @@ const projectsList = [
     technologies: ['React', 'Firebase', 'API Integration', 'Material-UI', 'Responsive Design']
   },
   {
-    titleEn: 'Selective Mutism Model Testing and Recording System',
+    titleEn: 'Dysarthria Model Testing and Recording System',
     titleZh: '吶語症模型測試與收音系統',
-    descriptionEn: 'Developed a specialized platform for collecting and testing voice samples from selective mutism patients. This system can collect voice samples and conduct real-time testing, providing important data support for research.',
+    descriptionEn: 'Developed a specialized platform for collecting and testing voice samples from Dysarthria patients. This system can collect voice samples and conduct real-time testing, providing important data support for research.',
     descriptionZh: '開發一個專門針對吶語症患者的語音收集和測試平台。此系統能夠收集語音樣本並進行即時測試，為研究提供重要的數據支援。',
     link: 'https://120.126.151.159:56432/',
     technologies: ['Python', 'React', 'Speech Recognition', 'Deep Learning']
   },
   {
-    titleEn: 'Selective Mutism Model Data Analysis Platform',
+    titleEn: 'Dysarthria Model Data Analysis Platform',
     titleZh: '吶語症模型數據分析平台',
-    descriptionEn: 'Established a data analysis platform for analyzing and visualizing selective mutism speech recognition results. This platform helps research teams better understand model performance and improvement directions.',
+    descriptionEn: 'Established a data analysis platform for analyzing and visualizing Dysarthria speech recognition results. This platform helps research teams better understand model performance and improvement directions.',
     descriptionZh: '建立數據分析平台，用於分析和視覺化吶語症語音識別的結果。此平台協助研究團隊更好地理解模型表現和改進方向。',
     link: 'https://dmcair.ntpu.edu.tw:5173/',
     technologies: ['Data Analysis', 'Visualization', 'React', 'Python']

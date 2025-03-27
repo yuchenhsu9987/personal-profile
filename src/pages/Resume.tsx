@@ -627,7 +627,7 @@ const Resume = () => {
                   </Paper>
                 </Grid>
 
-                {/* 選擇性緘默症模型測試與收音系統 */}
+                {/* 吶語症模型測試與收音系統 */}
                 <Grid item xs={12} sm={6}>
                   <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
@@ -637,8 +637,8 @@ const Resume = () => {
                         flex: 1
                       }}>
                         {language === 'en' 
-                          ? 'Selective Mutism Model Testing System' 
-                          : '選擇性緘默症模型測試系統'}
+                          ? 'Dysarthria Model Testing System' 
+                          : '吶語症模型測試系統'}
                       </Typography>
                       <Box 
                         component="a"
@@ -657,8 +657,8 @@ const Resume = () => {
                     </Box>
                     <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
                       {language === 'en'
-                        ? 'Developed a platform for collecting and testing voice samples from selective mutism patients, providing real-time testing capabilities.'
-                        : '開發針對選擇性緘默症患者的語音收集和測試平台，用於收集語音樣本並進行即時測試。'}
+                        ? 'Developed a platform for collecting and testing voice samples from dysarthria patients, providing real-time testing capabilities.'
+                        : '開發針對吶語症患者的語音收集和測試平台，用於收集語音樣本並進行即時測試。'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                       <Chip label="Python" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
@@ -680,7 +680,7 @@ const Resume = () => {
                   </Paper>
                 </Grid>
 
-                {/* 選擇性緘默症數據分析平台 */}
+                {/* 吶語症數據分析平台 */}
                 <Grid item xs={12} sm={6}>
                   <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
@@ -690,8 +690,8 @@ const Resume = () => {
                         flex: 1
                       }}>
                         {language === 'en'
-                          ? 'Selective Mutism Data Analysis Platform'
-                          : '選擇性緘默症數據分析平台'}
+                          ? 'Dysarthria Data Analysis Platform'
+                          : '吶語症數據分析平台'}
                       </Typography>
                       <Box 
                         component="a"
@@ -710,8 +710,8 @@ const Resume = () => {
                     </Box>
                     <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
                       {language === 'en'
-                        ? 'Built a data analysis platform for analyzing and visualizing selective mutism speech recognition results, assisting research improvements.'
-                        : '建立數據分析平台，用於分析和視覺化選擇性緘默症語音識別的結果，協助研究改進。'}
+                        ? 'Built a data analysis platform for analyzing and visualizing dysarthria speech recognition results, assisting research improvements.'
+                        : '建立數據分析平台，用於分析和視覺化吶語症語音識別的結果，協助研究改進。'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                       <Chip 
