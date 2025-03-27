@@ -6,6 +6,14 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const projectsList = [
   {
+    titleEn: 'Ask About Me',
+    titleZh: '履歷互動',
+    descriptionEn: 'A cross-platform application built with React and TypeScript that integrates OpenAI API to provide intelligent Q&A functionality, allowing users to ask AI questions about me.',
+    descriptionZh: '這是一個基於 React 和 TypeScript 的跨平台應用，整合 OpenAI API 來提供智慧問答功能，讓使用者能夠向 AI 詢問一些關於我的問題。',
+    link: 'https://ask-aboutme.firebaseapp.com/',
+    technologies: ['React', 'TypeScript', 'OpenAI API', 'Firebase', 'Material-UI']
+  },
+  {
     titleEn: 'LLM Chat-Bot',
     titleZh: 'LLM 聊天機器人',
     descriptionEn: 'An intelligent chatbot developed based on large language models. Integrates advanced natural language processing technology, supports multi-turn dialogue, and has contextual understanding capabilities. Developed using React for the frontend interface and deployed with Firebase for a smooth user experience.',

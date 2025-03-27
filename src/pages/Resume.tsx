@@ -252,6 +252,12 @@ const Resume = () => {
                     boxShadow: 3,
                     mb: 1,
                     bgcolor: 'primary.main',
+                    objectFit: 'cover',
+                    '@media print': {
+                      width: '80px',
+                      height: '80px',
+                      aspectRatio: '1',
+                    }
                   }}
                 />
               </Box>
@@ -504,6 +510,45 @@ const Resume = () => {
               </Typography>
 
               <Grid container spacing={1.5}>
+                {/* Ask About Me */}
+                <Grid item xs={12} sm={6}>
+                  <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                      <Typography variant="h3" sx={{ 
+                        fontSize: '16px',
+                        fontWeight: 500,
+                        flex: 1
+                      }}>
+                        Ask About Me
+                      </Typography>
+                      <Box 
+                        component="a"
+                        href="https://ask-aboutme.firebaseapp.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{ 
+                          display: 'flex',
+                          alignItems: 'center',
+                          color: 'primary.main',
+                          '&:hover': { opacity: 0.8 }
+                        }}
+                      >
+                        <QRCodeSVG value="https://ask-aboutme.firebaseapp.com/" size={24} level="L" />
+                      </Box>
+                    </Box>
+                    <Typography variant="body2" sx={{ mb: 1, flex: 1, fontSize: '0.875rem' }}>
+                      {language === 'en'
+                        ? 'A cross-platform application built with React and TypeScript that integrates OpenAI API to provide intelligent Q&A functionality.'
+                        : '基於 React 和 TypeScript 的跨平台應用，整合 OpenAI API 來提供智慧問答功能。'}
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      <Chip label="React" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="TypeScript" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                      <Chip label="OpenAI API" size="small" color="primary" variant="outlined" sx={{ height: '20px' }} />
+                    </Box>
+                  </Paper>
+                </Grid>
+
                 {/* LLM Chat-Bot */}
                 <Grid item xs={12} sm={6}>
                   <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -635,7 +680,7 @@ const Resume = () => {
                   </Paper>
                 </Grid>
 
-                {/* 吶語症模型數據分析平台 */}
+                {/* 吶語症數據分析平台 */}
                 <Grid item xs={12} sm={6}>
                   <Paper elevation={1} sx={{ p: 1.5, height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
@@ -715,8 +760,8 @@ const Resume = () => {
                     </Typography>
                     <Typography variant="body2" sx={{ lineHeight: 1.4, fontSize: '13px' }}>
                       {language === 'en' 
-                        ? 'Chinese (Native), English (Intermediate - TOEIC 660)' 
-                        : '中文（母語）、英文（中級 - TOEIC 660分）'}
+                        ? 'Chinese (Native), English (TOEIC 660)' 
+                        : '中文（母語）、英文（ TOEIC 660分）'}
                     </Typography>
                   </Paper>
                 </Grid>
